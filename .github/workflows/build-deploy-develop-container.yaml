@@ -1,9 +1,13 @@
 # This workflow will build a docker container, publish it to Github Registry.
+#
+# DISABLED in this fork: it pushes to the bigcapitalhq/* namespace (upstream's
+# GHCR images), which our fork has no access to, so every run fails. Trigger
+# is reduced to workflow_dispatch (manual-only) to keep the file as a reference
+# without burning CI minutes or sending failure emails. Re-enable the push
+# trigger once we point WEBAPP_IMAGE_NAME / SERVER_IMAGE_NAME at our own org.
 name: Build and Deploy Develop Docker Container
 on:
-  push:
-    branches:
-      - develop
+  workflow_dispatch:
 
 env:
   WEBAPP_IMAGE_NAME: bigcapitalhq/webapp

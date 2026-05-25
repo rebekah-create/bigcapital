@@ -1,0 +1,18 @@
+# Historical findings from upstream bigcapitalhq/bigcapital commits (pre-fork).
+# These are example/placeholder values, test fixtures, or upstream-committed
+# artifacts we cannot rewrite. New leaks in current code will still be flagged.
+#
+# Format: <commit-sha>:<file>:<rule-id>:<line>
+caff6ce47c3058c19efe4f5747eb03549f41ecdf:packages/server-nest/test/init-app-test.ts:jwt:9
+caff6ce47c3058c19efe4f5747eb03549f41ecdf:packages/server-nest/test/init-app-test.ts:generic-api-key:8
+19080a67ab7045ed61cec6cf56e839fd06681b66:packages/server-nest/.env.example:generic-api-key:33
+a183666df6e37d70376e032788224f4753657cb0:packages/webapp/src/containers/StripePayment/use-stripe-connect.ts:generic-api-key:33
+4ed9c36ebd9bab0f465f2ea3566bec0867028d7b:.env.example:generic-api-key:33
+03753384d39e51abd7700c97f14a1a1e1f77dd4c:.env.example:generic-api-key:26
+80b97b5fdcd5506e0dfca044cf40a30780c448b2:packages/server/.env.example:generic-api-key:31
+cbc0ccbfb9a9888013119fd3d576694b16d5708a:.npmrc:github-pat:2
+dc56175d4316090fef79447ddf2f680d346568b8:client/nginx/certs/bigcapital.ly/privkey.pem:private-key:1
+e2c53f4513a6d3147ff0c93a649b28dd147e7679:server/.env.example:generic-api-key:32
+e2c53f4513a6d3147ff0c93a649b28dd147e7679:server/.env.example:generic-api-key:34
+abefba22ee4154319e20abdcb2e31bcc80bda2ad:server/config/config.js:generic-api-key:71
+e4270dc039850b49f743bca79f30fac42294545d:server/config/config.js:generic-api-key:69
