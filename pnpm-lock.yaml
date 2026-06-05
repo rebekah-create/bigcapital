@@ -489,7 +489,7 @@ importers:
         version: 2.1.13(@tiptap/pm@2.1.13)
       '@tiptap/extension-color':
         specifier: latest
-        version: 3.25.0(@tiptap/extension-text-style@2.1.13(@tiptap/core@2.1.13(@tiptap/pm@2.1.13)))
+        version: 3.26.0(@tiptap/extension-text-style@2.1.13(@tiptap/core@2.1.13(@tiptap/pm@2.1.13)))
       '@tiptap/extension-list-item':
         specifier: 2.1.13
         version: 2.1.13(@tiptap/core@2.1.13(@tiptap/pm@2.1.13))
@@ -5758,10 +5758,10 @@ packages:
     peerDependencies:
       '@tiptap/core': ^2.0.0
 
-  '@tiptap/extension-color@3.25.0':
-    resolution: {integrity: sha512-eBrxTDD9vKrrN5VPyvSRlwM9ApADSBqkCW8fA7Y3iedmIOAFb+iySv5LIh57tcnIL0e62LRyiXwTWpaxEfJFbw==}
+  '@tiptap/extension-color@3.26.0':
+    resolution: {integrity: sha512-rMVQh2LxOML21tf7fe2EI7NbzDf6hBvu2YJ6SSFrMhO0ofodSNlzDDJ9Ry+ybq37DC1ryGNLvQgqbSXI1EYOVA==}
     peerDependencies:
-      '@tiptap/extension-text-style': 3.25.0
+      '@tiptap/extension-text-style': 3.26.0
 
   '@tiptap/extension-document@2.4.0':
     resolution: {integrity: sha512-3jRodQJZDGbXlRPERaloS+IERg/VwzpC1IO6YSJR9jVIsBO6xC29P3cKTQlg1XO7p6ZH/0ksK73VC5BzzTwoHg==}
@@ -21399,7 +21399,7 @@ snapshots:
     dependencies:
       '@tiptap/core': 2.1.13(@tiptap/pm@2.1.13)
 
-  '@tiptap/extension-color@3.25.0(@tiptap/extension-text-style@2.1.13(@tiptap/core@2.1.13(@tiptap/pm@2.1.13)))':
+  '@tiptap/extension-color@3.26.0(@tiptap/extension-text-style@2.1.13(@tiptap/core@2.1.13(@tiptap/pm@2.1.13)))':
     dependencies:
       '@tiptap/extension-text-style': 2.1.13(@tiptap/core@2.1.13(@tiptap/pm@2.1.13))
 
