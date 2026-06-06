@@ -14,12 +14,12 @@ import { compose } from '@/utils';
 /**
  * Manual journal views tabs.
  */
-function ManualJournalsViewTabs({
+function ManualJournalsViewTabsInner({
   // #withManualJournalsActions
   setManualJournalsTableState,
 
   // #withManualJournals
-  journalsTableState
+  journalsTableState,
 }) {
   // Manual journals context.
   const { journalsViews } = useManualJournalsContext();
@@ -36,7 +36,7 @@ function ManualJournalsViewTabs({
       customViewId: viewId || null,
     });
   };
-  
+
   return (
     <Navbar className="navbar--dashboard-views">
       <NavbarGroup align={Alignment.LEFT}>
@@ -52,10 +52,10 @@ function ManualJournalsViewTabs({
   );
 }
 
-export default compose(
+export const ManualJournalsViewTabs = compose(
   withManualJournalsActions,
   withDashboardActions,
   withManualJournals(({ manualJournalsTableState }) => ({
     journalsTableState: manualJournalsTableState,
   })),
-)(ManualJournalsViewTabs);
+)(ManualJournalsViewTabsInner);

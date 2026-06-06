@@ -4,7 +4,7 @@ import { Classes, Intent } from '@blueprintjs/core';
 import { Form, Formik } from 'formik';
 import { AppToaster } from '@/components';
 
-import TaxRateFormDialogFormContent from './TaxRateFormDialogFormContent';
+import { TaxRateFormDialogContent as TaxRateFormDialogFormContent } from './TaxRateFormDialogFormContent';
 
 import {
   CreateTaxRateFormSchema,
@@ -16,7 +16,7 @@ import {
   transformFormToReq,
   transformTaxRateToForm,
 } from './utils';
-import { useCreateTaxRate, useEditTaxRate } from '@/hooks/query/taxRates';
+import { useCreateTaxRate, useEditTaxRate } from '@/hooks/query/tax-rates';
 import { useTaxRateFormDialogContext } from './TaxRateFormDialogBoot';
 import { TaxRateFormDialogFormFooter } from './TaxRateFormDialogFormFooter';
 import { TaxRateFormDialogFormErrors } from './TaxRateFormDialogFormErrors';
@@ -28,7 +28,7 @@ import { compose } from '@/utils';
 /**
  * Tax rate form dialog content.
  */
-function TaxRateFormDialogForm({
+function TaxRateFormDialogFormInner({
   // #withDialogActions
   closeDialog,
 
@@ -121,7 +121,7 @@ function TaxRateFormDialogForm({
   );
 }
 
-export default compose(
+export const TaxRateFormDialogForm = compose(
   withDialogActions,
   withDrawerActions,
-)(TaxRateFormDialogForm);
+)(TaxRateFormDialogFormInner);

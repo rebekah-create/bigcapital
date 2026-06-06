@@ -10,7 +10,9 @@ import { CLASSES } from '@/constants/classes';
 import { compose } from '@/utils';
 
 const PdfPreviewDialogContent = React.lazy(() =>
-  import('./CreditNotePdfPreviewDialogContent'),
+  import('./CreditNotePdfPreviewDialogContent').then((m) => ({
+    default: m.CreditNotePdfPreviewDialogContent,
+  })),
 );
 
 /**
@@ -40,4 +42,4 @@ function CreditNotePdfPreviewDialog({
     </Dialog>
   );
 }
-export default compose(withDialogRedux())(CreditNotePdfPreviewDialog);
+export const index = compose(withDialogRedux())(CreditNotePdfPreviewDialog);

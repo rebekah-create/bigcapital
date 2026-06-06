@@ -11,8 +11,10 @@ import { EnsureUserEmailVerified } from '../Guards/EnsureUserEmailVerified';
 
 import '@/style/pages/Dashboard/Dashboard.scss';
 
-const SetupWizardPage = lazy(
-  () => import('@/containers/Setup/WizardSetupPage'),
+const SetupWizardPage = lazy(() =>
+  import('@/containers/Setup/WizardSetupPage').then((m) => ({
+    default: m.WizardSetupPage,
+  })),
 );
 /**
  * Dashboard inner private pages.

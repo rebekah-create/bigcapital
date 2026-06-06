@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 import { Intent } from '@blueprintjs/core';
 
 import { AppToaster, FormattedMessage as T } from '@/components';
-import AuthInsider from '@/containers/Authentication/AuthInsider';
+import { AuthInsider } from '@/containers/Authentication/AuthInsider';
 import { useAuthLogin, useAuthRegister } from '@/hooks/query/authentication';
 
-import RegisterForm from './RegisterForm';
+import { RegisterForm } from './RegisterForm';
 import {
   RegisterSchema,
   transformRegisterErrorsToForm,
@@ -30,7 +30,7 @@ const initialValues = {
 /**
  * Register form.
  */
-export default function RegisterUserForm() {
+export function RegisterUserForm() {
   const { mutateAsync: authLoginMutate } = useAuthLogin();
   const { mutateAsync: authRegisterMutate } = useAuthRegister();
 
@@ -57,7 +57,7 @@ export default function RegisterUserForm() {
         const {
           data: { errors },
         } = response;
-        
+
         const formErrors = transformRegisterErrorsToForm(errors);
         const toastMessages = transformRegisterToastMessages(errors);
 

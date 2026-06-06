@@ -6,7 +6,9 @@ import { withDrawers } from '@/containers/Drawer/withDrawers';
 import { compose } from '@/utils';
 
 const QuickCretaeItemDrawerContent = React.lazy(() =>
-  import('./QuickCreateItemDrawerContent'),
+  import('./QuickCreateItemDrawerContent').then((m) => ({
+    default: m.QuickCreateItemDrawerContent,
+  })),
 );
 
 /**
@@ -35,4 +37,4 @@ function QuickCreateItemDrawer({
   );
 }
 
-export default compose(withDrawers())(QuickCreateItemDrawer);
+export const index = compose(withDrawers())(QuickCreateItemDrawer);

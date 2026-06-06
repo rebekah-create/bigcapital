@@ -19,17 +19,14 @@ import { compose } from '@/utils';
 /**
  * Branches data table.
  */
-function BranchesDataTable({
+function BranchesDataTableInner({
   // #withDialogAction
   openDialog,
 
   // #withAlertActions
   openAlert,
 }) {
-  // Table columns.
   const columns = useBranchesTableColumns();
-
-  // MarkBranchAsPrimary
   const { mutateAsync: markBranchAsPrimaryMutate } = useMarkBranchAsPrimary();
 
   const { branches, isBranchesLoading, isBranchesFetching } =
@@ -59,7 +56,7 @@ function BranchesDataTable({
     <BranchesTableCard>
       <BranchesTable
         columns={columns}
-        data={branches}
+        data={branches ?? []}
         loading={isBranchesLoading}
         headerLoading={isBranchesLoading}
         progressBarLoading={isBranchesFetching}
@@ -76,7 +73,10 @@ function BranchesDataTable({
   );
 }
 
-export default compose(withDialogActions, withAlertActions)(BranchesDataTable);
+export const BranchesDataTable = compose(
+  withDialogActions,
+  withAlertActions,
+)(BranchesDataTableInner);
 
 const BranchesTableCard = styled(Card)`
   padding: 0;

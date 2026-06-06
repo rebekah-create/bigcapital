@@ -10,7 +10,7 @@ import { AppToaster } from '@/components';
 import { CreateCustomerOpeningBalanceFormSchema } from './CustomerOpeningBalanceForm.schema';
 import { useCustomerOpeningBalanceContext } from './CustomerOpeningBalanceFormProvider';
 
-import CustomerOpeningBalanceFormContent from './CustomerOpeningBalanceFormContent';
+import { CustomerOpeningBalanceFormContent } from './CustomerOpeningBalanceFormContent';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
 
 import { compose } from '@/utils';
@@ -26,7 +26,7 @@ const defaultInitialValues = {
  * Customer Opening balance form.
  * @returns
  */
-function CustomerOpeningBalanceForm({
+function CustomerOpeningBalanceFormInner({
   // #withDialogActions
   closeDialog,
 }) {
@@ -44,7 +44,9 @@ function CustomerOpeningBalanceForm({
   const handleFormSubmit = (values, { setSubmitting, setErrors }) => {
     const formValues = {
       ...values,
-      opening_balance_at: moment(values.opening_balance_at).format('YYYY-MM-DD'),
+      opening_balance_at: moment(values.opening_balance_at).format(
+        'YYYY-MM-DD',
+      ),
     };
 
     // Handle request response success.
@@ -82,4 +84,6 @@ function CustomerOpeningBalanceForm({
   );
 }
 
-export default compose(withDialogActions)(CustomerOpeningBalanceForm);
+export const CustomerOpeningBalanceForm = compose(withDialogActions)(
+  CustomerOpeningBalanceFormInner,
+);

@@ -12,7 +12,7 @@ import intl from 'react-intl-universal';
 /**
  * API Keys datatable.
  */
-function ApiKeysDataTable({
+function ApiKeysDataTableInner({
   // #withDialogActions
   openDialog,
 
@@ -37,7 +37,9 @@ function ApiKeysDataTable({
         })
         .catch((error) => {
           AppToaster.show({
-            message: error?.response?.data?.message || intl.get('something_went_wrong'),
+            message:
+              error?.response?.data?.message ||
+              intl.get('something_went_wrong'),
             intent: Intent.DANGER,
           });
         });
@@ -62,4 +64,7 @@ function ApiKeysDataTable({
   );
 }
 
-export default compose(withDialogActions, withAlertActions)(ApiKeysDataTable);
+export const ApiKeysDataTable = compose(
+  withDialogActions,
+  withAlertActions,
+)(ApiKeysDataTableInner);

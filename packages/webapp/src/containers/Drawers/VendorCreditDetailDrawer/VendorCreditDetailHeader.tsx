@@ -21,7 +21,7 @@ import { VendorCreditDetailsStatus } from './utils';
 /**
  * Vendor credit detail drawer header.
  */
-export default function VendorCreditDetailHeader() {
+export function VendorCreditDetailHeader() {
   const { vendorCredit } = useVendorCreditDetailDrawerContext();
   return (
     <CommercialDocHeader>
@@ -77,7 +77,7 @@ export default function VendorCreditDetailHeader() {
               children={defaultTo(vendorCredit.reference_no, '-')}
             />
             <DetailItem
-              label={<T id={'vendor_credit.drawer.label_created_at'} />}
+              label={intl.get('vendor_credit.drawer.label_created_at')}
               children={vendorCredit.formatted_created_at}
             />
           </DetailsMenu>

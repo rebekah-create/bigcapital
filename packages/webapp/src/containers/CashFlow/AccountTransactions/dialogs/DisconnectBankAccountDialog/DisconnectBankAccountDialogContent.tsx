@@ -4,7 +4,7 @@ import { Button, Intent, Classes } from '@blueprintjs/core';
 import * as R from 'ramda';
 import { Form, Formik, FormikHelpers } from 'formik';
 import { AppToaster, FFormGroup, FInputGroup } from '@/components';
-import { useDisconnectBankAccount } from '@/hooks/query/bank-rules';
+import { useDisconnectBankAccount } from '@/hooks/query/banking';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
 import { DialogsName } from '@/constants/dialogs';
 
@@ -24,7 +24,7 @@ interface DisconnectBankAccountDialogContentProps {
   bankAccountId: number;
 }
 
-function DisconnectBankAccountDialogContent({
+function DisconnectBankAccountDialogContentInner({
   bankAccountId,
 
   // #withDialogActions
@@ -100,4 +100,6 @@ function DisconnectBankAccountDialogContent({
   );
 }
 
-export default R.compose(withDialogActions)(DisconnectBankAccountDialogContent);
+export const DisconnectBankAccountDialogContent = R.compose(withDialogActions)(
+  DisconnectBankAccountDialogContentInner,
+);

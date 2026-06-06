@@ -11,7 +11,6 @@ import classNames from 'classnames';
 import {
   If,
   Icon,
-  FormattedMessage as T,
   ExchangeRateMutedField,
   BranchSelect,
   FeatureCan,
@@ -24,12 +23,13 @@ import { useSetPrimaryBranchToForm } from './utils';
 
 import { withCurrentOrganization } from '@/containers/Organization/withCurrentOrganization';
 import { compose } from '@/utils';
+import intl from 'react-intl-universal';
 
 /**
  * Vendor Opening balance form fields.
  * @returns
  */
-function VendorOpeningBalanceFormFields({
+function VendorOpeningBalanceFormFieldsInner({
   // #withCurrentOrganization
   organization: { base_currency },
 }) {
@@ -46,7 +46,7 @@ function VendorOpeningBalanceFormFields({
       {/*------------ Opening balance -----------*/}
       <FFormGroup
         name={'opening_balance'}
-        label={<T id={'vendor_opening_balance.label.opening_balance'} />}
+        label={intl.get('vendor_opening_balance.label.opening_balance')}
       >
         <ControlGroup>
           <InputPrependText text={vendor.currency_code} />
@@ -61,7 +61,7 @@ function VendorOpeningBalanceFormFields({
       {/*------------ Opening balance at -----------*/}
       <FFormGroup
         name={'opening_balance_at'}
-        label={<T id={'vendor_opening_balance.label.opening_balance_at'} />}
+        label={intl.get('vendor_opening_balance.label.opening_balance_at')}
         fill
         fastField
       >
@@ -93,7 +93,7 @@ function VendorOpeningBalanceFormFields({
       {/*------------ Opening balance branch id -----------*/}
       <FeatureCan feature={Features.Branches}>
         <FFormGroup
-          label={<T id={'branch'} />}
+          label={intl.get('branch')}
           name={'opening_balance_branch_id'}
           fill
           fastField
@@ -109,6 +109,6 @@ function VendorOpeningBalanceFormFields({
   );
 }
 
-export default compose(withCurrentOrganization())(
-  VendorOpeningBalanceFormFields,
-);
+export const VendorOpeningBalanceFormFields = compose(
+  withCurrentOrganization(),
+)(VendorOpeningBalanceFormFieldsInner);

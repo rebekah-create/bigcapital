@@ -4,7 +4,6 @@ import { FastField, ErrorMessage } from 'formik';
 import { Position, ControlGroup } from '@blueprintjs/core';
 import classNames from 'classnames';
 import {
-  FormattedMessage as T,
   FAccountsSuggestField,
   InputPrependText,
   FieldRequiredHint,
@@ -34,12 +33,13 @@ import {
 import { MoneyInOutTransactionNoField } from '../../_components';
 import { useMoneyInFieldsContext } from '../MoneyInFieldsProvider';
 import { MoneyInExchangeRateField } from '../MoneyInExchangeRateField';
+import intl from 'react-intl-universal';
 
 /**
 /**
  * Owner contribution form fields.
  */
-export default function OwnerContributionFormFields() {
+export function OwnerContributionFormFields() {
   // Money in dialog context.
   const { accounts, branches } = useMoneyInDailogContext();
   const { account } = useMoneyInFieldsContext();
@@ -52,7 +52,7 @@ export default function OwnerContributionFormFields() {
       <FeatureCan feature={Features.Branches}>
         <Row>
           <Col xs={5}>
-            <FFormGroup name={'branch_id'} label={<T id={'branch'} />}>
+            <FFormGroup name={'branch_id'} label={intl.get('branch')}>
               <BranchSelect
                 name={'branch_id'}
                 branches={branches}
@@ -69,7 +69,7 @@ export default function OwnerContributionFormFields() {
           {/*------------ Date -----------*/}
           <FFormGroup
             name={'date'}
-            label={<T id={'date'} />}
+            label={intl.get('date')}
             labelInfo={<FieldRequiredHint />}
             fill
           >
@@ -98,7 +98,7 @@ export default function OwnerContributionFormFields() {
         <Col xs={10}>
           <FFormGroup
             name={'amount'}
-            label={<T id={'amount'} />}
+            label={intl.get('amount')}
             labelInfo={<FieldRequiredHint />}
           >
             <ControlGroup>
@@ -117,7 +117,7 @@ export default function OwnerContributionFormFields() {
           {/*------------ equity account -----------*/}
           <FFormGroup
             name={'credit_account_id'}
-            label={<T id={'cash_flow_transaction.label_equity_account'} />}
+            label={intl.get('cash_flow_transaction.label_equity_account')}
             labelInfo={<FieldRequiredHint />}
           >
             <FAccountsSuggestField
@@ -130,14 +130,14 @@ export default function OwnerContributionFormFields() {
 
         <Col xs={5}>
           {/*------------ Reference -----------*/}
-          <FFormGroup name={'reference_no'} label={<T id={'reference_no'} />}>
+          <FFormGroup name={'reference_no'} label={intl.get('reference_no')}>
             <FInputGroup name={'reference_no'} />
           </FFormGroup>
         </Col>
       </Row>
 
       {/*------------ Description -----------*/}
-      <FFormGroup name={'description'} label={<T id={'description'} />}>
+      <FFormGroup name={'description'} label={intl.get('description')}>
         <FTextArea
           name={'description'}
           growVertically={true}

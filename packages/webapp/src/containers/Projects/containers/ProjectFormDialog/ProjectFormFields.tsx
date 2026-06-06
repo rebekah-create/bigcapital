@@ -14,7 +14,6 @@ import {
   FDateInput,
   FMoneyInputGroup,
   InputPrependText,
-  FormattedMessage as T,
   Stack,
   CustomersSelect,
 } from '@/components';
@@ -25,7 +24,7 @@ import { useProjectFormContext } from './ProjectFormProvider';
  * Project form fields.
  * @returns
  */
-function ProjectFormFields() {
+export function ProjectFormFields() {
   // Formik context.
   const { values } = useFormikContext();
 
@@ -106,5 +105,3 @@ function ProjectFormCustomerSelect() {
     </FormGroup>
   );
 }
-
-export default ProjectFormFields;

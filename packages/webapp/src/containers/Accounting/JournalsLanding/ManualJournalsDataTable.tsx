@@ -10,7 +10,7 @@ import {
 } from '@/components';
 import { TABLES } from '@/constants/tables';
 
-import ManualJournalsEmptyStatus from './ManualJournalsEmptyStatus';
+import { ManualJournalsEmptyStatus } from './ManualJournalsEmptyStatus';
 
 import { ActionsMenu } from './components';
 
@@ -30,7 +30,7 @@ import { DRAWERS } from '@/constants/drawers';
 /**
  * Manual journals data-table.
  */
-function ManualJournalsDataTable({
+function ManualJournalsDataTableInner({
   // #withManualJournalsActions
   setManualJournalsTableState,
   setManualJournalsSelectedRows,
@@ -109,7 +109,6 @@ function ManualJournalsDataTable({
     setManualJournalsSelectedRows(selectedIds);
   };
 
-
   // Display manual journal empty status instead of the table.
   if (isEmptyStatus) {
     return <ManualJournalsEmptyStatus />;
@@ -120,7 +119,7 @@ function ManualJournalsDataTable({
       <DataTable
         noInitialFetch={true}
         columns={columns}
-        data={manualJournals}
+        data={manualJournals ?? []}
         manualSortBy={true}
         selectionColumn={true}
         sticky={true}
@@ -128,8 +127,8 @@ function ManualJournalsDataTable({
         headerLoading={isManualJournalsLoading}
         progressBarLoading={isManualJournalsFetching}
         pagination={true}
-        initialPageSize={manualJournalsTableState.pageSize}
-        pagesCount={pagination.pagesCount}
+        initialPageSize={manualJournalsTableState?.pageSize ?? 10}
+        rowsCount={pagination?.total ?? 0}
         autoResetSortBy={false}
         autoResetPage={false}
         onSelectedRowsChange={handleSelectedRowsChange}
@@ -152,7 +151,7 @@ function ManualJournalsDataTable({
   );
 }
 
-export default compose(
+export const ManualJournalsDataTable = compose(
   withManualJournalsActions,
   withManualJournals(({ manualJournalsTableState }) => ({
     manualJournalsTableState,
@@ -162,4 +161,4 @@ export default compose(
   withSettings(({ manualJournalsSettings }) => ({
     manualJournalsTableSize: manualJournalsSettings?.tableSize,
   })),
-)(ManualJournalsDataTable);
+)(ManualJournalsDataTableInner);

@@ -2,7 +2,6 @@
 import React from 'react';
 import { Alignment, Navbar, NavbarGroup } from '@blueprintjs/core';
 import { DashboardViewsTabs } from '@/components';
-
 import { withWarehouseTransfers } from './withWarehouseTransfers';
 import { withWarehouseTransfersActions } from './withWarehouseTransfersActions';
 import { useWarehouseTranfersListContext } from './WarehouseTransfersListProvider';
@@ -11,7 +10,7 @@ import { compose, transfromViewsToTabs } from '@/utils';
 /**
  * Warehouse transfer view tabs.
  */
-function WarehouseTransfersViewTabs({
+function WarehouseTransfersViewTabsInner({
   // #withWarehouseTransfers
   warehouseTransferCurrentView,
 
@@ -45,9 +44,9 @@ function WarehouseTransfersViewTabs({
   );
 }
 
-export default compose(
+export const WarehouseTransfersViewTabs = compose(
   withWarehouseTransfersActions,
   withWarehouseTransfers(({ warehouseTransferTableState }) => ({
     warehouseTransferCurrentView: warehouseTransferTableState?.viewSlug,
   })),
-)(WarehouseTransfersViewTabs);
+)(WarehouseTransfersViewTabsInner);

@@ -8,7 +8,6 @@ import {
   FInputGroup,
   FDateInput,
   FieldRequiredHint,
-  FormattedMessage as T,
 } from '@/components';
 import {
   inputIntent,
@@ -22,12 +21,13 @@ import { ProjectBillableTypeSuggestField } from '../../components';
 import { billableTypeOption } from '../common';
 import { ProjectRowDivider, BillableEntiresBox } from './components';
 import { useProjectBillableEntriesFormContext } from './ProjectBillableEntriesFormProvider';
+import intl from 'react-intl-universal';
 
 /**
  * Project billable entries form fields.
  * @returns
  */
-export default function ProjectBillableEntriesFormFields() {
+export function ProjectBillableEntriesFormFields() {
   // Formik context.
   const { values } = useFormikContext();
 
@@ -38,7 +38,7 @@ export default function ProjectBillableEntriesFormFields() {
       {/*------------ Filter by Date -----------*/}
       <FFormGroup
         name={'date'}
-        label={<T id={'project_billable_entries.dialog.filter_by_date'} />}
+        label={intl.get('project_billable_entries.dialog.filter_by_date')}
         labelInfo={<FieldRequiredHint />}
         className={classNames(CLASSES.FILL, 'form-group--date')}
       >
@@ -58,7 +58,7 @@ export default function ProjectBillableEntriesFormFields() {
       {/*------------ Filter by Type -----------*/}
       <FFormGroup
         name={'billableType'}
-        label={<T id={'project_billable_entries.dialog.filter_by_type'} />}
+        label={intl.get('project_billable_entries.dialog.filter_by_type')}
         labelInfo={<FieldRequiredHint />}
       >
         <ProjectBillableTypeSuggestField

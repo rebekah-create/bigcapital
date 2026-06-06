@@ -11,7 +11,6 @@ import classNames from 'classnames';
 import {
   If,
   Icon,
-  FormattedMessage as T,
   ExchangeRateMutedField,
   BranchSelect,
   FeatureCan,
@@ -24,12 +23,13 @@ import { useSetPrimaryBranchToForm } from './utils';
 
 import { withCurrentOrganization } from '@/containers/Organization/withCurrentOrganization';
 import { compose } from '@/utils';
+import intl from 'react-intl-universal';
 
 /**
  * Customer Opening balance fields.
  * @returns
  */
-function CustomerOpeningBalanceFields({
+function CustomerOpeningBalanceFieldsInner({
   // #withCurrentOrganization
   organization: { base_currency },
 }) {
@@ -46,7 +46,7 @@ function CustomerOpeningBalanceFields({
       {/*------------ Opening balance -----------*/}
       <FFormGroup
         name={'opening_balance'}
-        label={<T id={'customer_opening_balance.label.opening_balance'} />}
+        label={intl.get('customer_opening_balance.label.opening_balance')}
       >
         <ControlGroup>
           <InputPrependText text={customer.currency_code} />
@@ -61,7 +61,7 @@ function CustomerOpeningBalanceFields({
       {/*------------ Opening balance at -----------*/}
       <FFormGroup
         name={'opening_balance_at'}
-        label={<T id={'customer_opening_balance.label.opening_balance_at'} />}
+        label={intl.get('customer_opening_balance.label.opening_balance_at')}
         fill
         fastField
       >
@@ -93,7 +93,7 @@ function CustomerOpeningBalanceFields({
       {/*------------ Opening balance branch id -----------*/}
       <FeatureCan feature={Features.Branches}>
         <FFormGroup
-          label={<T id={'branch'} />}
+          label={intl.get('branch')}
           name={'opening_balance_branch_id'}
           fill
           fastField
@@ -110,4 +110,6 @@ function CustomerOpeningBalanceFields({
     </div>
   );
 }
-export default compose(withCurrentOrganization())(CustomerOpeningBalanceFields);
+export const CustomerOpeningBalanceFields = compose(withCurrentOrganization())(
+  CustomerOpeningBalanceFieldsInner,
+);

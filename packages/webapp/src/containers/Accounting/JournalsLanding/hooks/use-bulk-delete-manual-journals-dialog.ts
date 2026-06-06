@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { DialogsName } from '@/constants/dialogs';
-import { useValidateBulkDeleteManualJournals } from '@/hooks/query/manualJournals';
+import { useValidateBulkDeleteManualJournals } from '@/hooks/query/manual-journals';
 import { useBulkDeleteDialog } from '@/hooks/dialogs/useBulkDeleteDialog';
 
 export const useBulkDeleteManualJournalsDialog = () => {
@@ -9,7 +9,10 @@ export const useBulkDeleteManualJournalsDialog = () => {
     openBulkDeleteDialog,
     closeBulkDeleteDialog,
     isValidatingBulkDelete,
-  } = useBulkDeleteDialog(DialogsName.ManualJournalBulkDelete, validateBulkDeleteMutation);
+  } = useBulkDeleteDialog(
+    DialogsName.ManualJournalBulkDelete,
+    validateBulkDeleteMutation,
+  );
 
   return {
     openBulkDeleteDialog,
@@ -17,4 +20,3 @@ export const useBulkDeleteManualJournalsDialog = () => {
     isValidatingBulkDeleteManualJournals: isValidatingBulkDelete,
   };
 };
-

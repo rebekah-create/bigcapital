@@ -21,7 +21,6 @@ function ClearAllLinesAlert({
   // #withAlertActions
   closeAlert,
 }) {
-
   // Handle the alert cancel.
   const handleCancel = () => {
     closeAlert(name);
@@ -49,7 +48,7 @@ function ClearAllLinesAlert({
   );
 }
 
-export default compose(
+export const ClearningAllLinesAlert = compose(
   withAlertStoreConnect(),
   withAlertActions,
 )(ClearAllLinesAlert);

@@ -7,15 +7,16 @@ import { Card } from '@/components';
 import { useTransactionsByReference } from '@/hooks/query';
 import { useBillDrawerContext } from './BillDrawerProvider';
 
-import JournalEntriesTable, {
+import {
   AmountDisplayedBaseCurrencyMessage,
+  JournalEntriesTable,
 } from '../../JournalEntriesTable/JournalEntriesTable';
 
 /**
  * Bill GL entries table.
  * @returns {React.JSX}
  */
-export default function BillGLEntriesTable() {
+export function BillGLEntriesTable() {
   const { billId } = useBillDrawerContext();
 
   // Handle fetch transaction by reference.

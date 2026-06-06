@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { lazy } from 'react';
 import classNames from 'classnames';
 
@@ -10,15 +9,22 @@ import { CLASSES } from '@/constants/classes';
 import { compose } from '@/utils';
 
 // Lazy loading the content.
-const CustomerBalanceSummaryPdfDialogContent = lazy(
-  () => import('./CustomerBalanceSummaryPdfDialogContent'),
+const CustomerBalanceSummaryPdfDialogContent = lazy(() =>
+  import('./CustomerBalanceSummaryPdfDialogContent').then((m) => ({
+    default: m.CustomerBalanceSummaryPdfDialogContent,
+  })),
 );
 
-/**
- * Cashflow sheet pdf preview dialog.
- * @returns {React.ReactNode}
- */
-function CashflowSheetPdfDialogRoot({ dialogName, payload, isOpen }) {
+interface CustomerBalanceSummaryPdfDialogRootProps {
+  dialogName: string;
+  payload?: Record<string, unknown>;
+  isOpen: boolean;
+}
+
+function CashflowSheetPdfDialogRoot({
+  dialogName,
+  isOpen,
+}: CustomerBalanceSummaryPdfDialogRootProps) {
   return (
     <Dialog
       name={dialogName}

@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import PaymentMadeViewTabs from './PaymentMadeViewTabs';
+import { PaymentMadeViewTabs } from './PaymentMadeViewTabs';
 
 import { withAlertActions } from '@/containers/Alert/withAlertActions';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
@@ -22,7 +22,6 @@ function PaymentMadesViewPage({
         exact={true}
         path={['/payments-made/:custom_view_id/custom_view', '/payments-made']}
       >
-
         {/* <PaymentMadeDataTable
               onDeletePaymentMade={handleDeletePaymentMade}
               onEditPaymentMade={handleEditPaymentMade}
@@ -33,7 +32,7 @@ function PaymentMadesViewPage({
   );
 }
 
-export default compose(
+export const PaymentMadesView = compose(
   withAlertActions,
   withDialogActions,
 )(PaymentMadesViewPage);

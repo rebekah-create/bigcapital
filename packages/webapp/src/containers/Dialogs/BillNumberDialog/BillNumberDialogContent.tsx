@@ -1,9 +1,9 @@
 // @ts-nocheck
 import React from 'react';
 import { DialogContent } from '@/components';
-import { useQuery, useQueryClient } from 'react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 
-import ReferenceNumberForm from '@/containers/JournalNumber/ReferenceNumberForm';
+import { ReferenceNumberForm } from '@/containers/JournalNumber/ReferenceNumberForm';
 
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
 import { withSettingsActions } from '@/containers/Settings/withSettingsActions';
@@ -16,7 +16,7 @@ import { compose, optionsMapToArray } from '@/utils';
  * bill number dialog's content.
  */
 
-function BillNumberDialogContent({
+function BillNumberDialogContentInner({
   // #withSettings
   nextNumber,
   numberPrefix,
@@ -32,7 +32,10 @@ function BillNumberDialogContent({
   setBillNumberChanged,
 }) {
   const queryClient = useQueryClient();
-  const fetchSettings = useQuery(['settings'], () => requestFetchOptions({}));
+  const fetchSettings = useQuery({
+    queryKey: ['settings'],
+    queryFn: () => requestFetchOptions({}),
+  });
 
   const handleSubmitForm = (values, { setSubmitting }) => {
     const options = optionsMapToArray(values).map((option) => {
@@ -46,7 +49,7 @@ function BillNumberDialogContent({
         setBillNumberChanged(true);
 
         setTimeout(() => {
-          queryClient.invalidateQueries('settings');
+          queryClient.invalidateQueries({ queryKey: ['settings'] });
         }, 250);
       })
       .catch(() => {
@@ -70,7 +73,7 @@ function BillNumberDialogContent({
   );
 }
 
-export default compose(
+export const BillNumberDialogContent = compose(
   withDialogActions,
   withSettingsActions,
   withSettings(({ billsettings }) => ({
@@ -78,4 +81,4 @@ export default compose(
     numberPrefix: billsettings?.number_prefix,
   })),
   withBillsActions,
-)(BillNumberDialogContent);
+)(BillNumberDialogContentInner);

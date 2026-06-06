@@ -13,7 +13,7 @@ import { compose } from '@/utils';
 /**
  * Mark default branding template alert.
  */
-function MarkDefaultBrandingTemplateAlert({
+function MarkDefaultBrandingTemplateAlertInner({
   // #ownProps
   name,
 
@@ -60,13 +60,14 @@ function MarkDefaultBrandingTemplateAlert({
       onConfirm={handleConfirmDelete}
     >
       <p>
-        Are you sure want to mark the given branding template as a default template?
+        Are you sure want to mark the given branding template as a default
+        template?
       </p>
     </Alert>
   );
 }
 
-export default compose(
+export const MarkDefaultBrandingTemplateAlert = compose(
   withAlertStoreConnect(),
   withAlertActions,
-)(MarkDefaultBrandingTemplateAlert);
+)(MarkDefaultBrandingTemplateAlertInner);

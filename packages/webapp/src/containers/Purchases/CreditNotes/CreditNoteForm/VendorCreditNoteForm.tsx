@@ -14,12 +14,12 @@ import {
   EditCreditNoteFormSchema,
 } from './VendorCreditNoteForm.schema';
 
-import VendorCreditNoteFormHeader from './VendorCreditNoteFormHeader';
-import VendorCreditNoteItemsEntriesEditor from './VendorCreditNoteItemsEntriesEditor';
-import VendorCreditNoteFormFooter from './VendorCreditNoteFormFooter';
-import VendorCreditNoteFloatingActions from './VendorCreditNoteFloatingActions';
-import VendorCreditNoteFormDialogs from './VendorCreditNoteFormDialogs';
-import VendorCreditNoteFormTopBar from './VendorCreditNoteFormTopBar';
+import { VendorCreditNoteFormHeader } from './VendorCreditNoteFormHeader';
+import { VendorCreditNoteItemsEntriesEditor } from './VendorCreditNoteItemsEntriesEditor';
+import { VendorCreditNoteFormFooter } from './VendorCreditNoteFormFooter';
+import { VendorCreditNoteFloatingActions } from './VendorCreditNoteFloatingActions';
+import { VendorCreditNoteFormDialogs } from './VendorCreditNoteFormDialogs';
+import { VendorCreditNoteFormTopBar } from './VendorCreditNoteFormTopBar';
 
 import { useVendorCreditNoteFormContext } from './VendorCreditNoteFormProvider';
 
@@ -38,7 +38,7 @@ import { withCurrentOrganization } from '@/containers/Organization/withCurrentOr
 /**
  * Vendor Credit note form.
  */
-function VendorCreditNoteForm({
+function VendorCreditNoteFormInner({
   // #withSettings
   vendorcreditAutoIncrement,
   vendorcreditNumberPrefix,
@@ -70,16 +70,16 @@ function VendorCreditNoteForm({
     () => ({
       ...(!isEmpty(vendorCredit)
         ? {
-          ...transformToEditForm(vendorCredit),
-        }
+            ...transformToEditForm(vendorCredit),
+          }
         : {
-          ...defaultVendorsCreditNote,
-          ...(vendorcreditAutoIncrement && {
-            vendor_credit_number: vendorCreditNumber,
+            ...defaultVendorsCreditNote,
+            ...(vendorcreditAutoIncrement && {
+              vendor_credit_number: vendorCreditNumber,
+            }),
+            currency_code: base_currency,
+            ...newVendorCredit,
           }),
-          currency_code: base_currency,
-          ...newVendorCredit,
-        }),
     }),
     [vendorCredit, base_currency],
   );
@@ -180,11 +180,11 @@ function VendorCreditNoteForm({
   );
 }
 
-export default compose(
+export const VendorCreditNoteForm = compose(
   withSettings(({ vendorsCreditNoteSetting }) => ({
     vendorcreditAutoIncrement: vendorsCreditNoteSetting?.autoIncrement,
     vendorcreditNextNumber: vendorsCreditNoteSetting?.nextNumber,
     vendorcreditNumberPrefix: vendorsCreditNoteSetting?.numberPrefix,
   })),
   withCurrentOrganization(),
-)(VendorCreditNoteForm);
+)(VendorCreditNoteFormInner);

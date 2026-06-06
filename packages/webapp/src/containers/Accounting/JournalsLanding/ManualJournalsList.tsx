@@ -7,10 +7,9 @@ import { DashboardPageContent } from '@/components';
 import { transformTableStateToQuery, compose } from '@/utils';
 
 import { ManualJournalsListProvider } from './ManualJournalsListProvider';
-import ManualJournalsDataTable from './ManualJournalsDataTable';
-import ManualJournalsActionsBar from './ManualJournalActionsBar';
+import { ManualJournalsDataTable } from './ManualJournalsDataTable';
+import { ManualJournalActionsBar as ManualJournalsActionsBar } from './ManualJournalActionsBar';
 import { withManualJournals } from './withManualJournals';
-
 
 /**
  * Manual journals table.
@@ -34,7 +33,7 @@ function ManualJournalsTable({
   );
 }
 
-export default compose(
+export const ManualJournalsList = compose(
   withManualJournals(
     ({ manualJournalsTableState, manualJournalTableStateChanged }) => ({
       journalsTableState: manualJournalsTableState,

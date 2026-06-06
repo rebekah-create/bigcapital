@@ -2,7 +2,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { css } from '@emotion/css';
-import CreditNoteForm from './CreditNoteForm';
+import { CreditNoteForm } from './CreditNoteForm';
 import {
   CreditNoteFormProvider,
   useCreditNoteFormContext,
@@ -13,9 +13,9 @@ import { DashboardInsider } from '@/components';
 /**
  * Credit note form page.
  */
-export default function CreditNoteFormPage() {
+export function CreditNoteFormPage() {
   const { id } = useParams();
-  const idAsInteger = parseInt(id, 10);
+  const idAsInteger = id ? parseInt(id, 10) : undefined;
 
   return (
     <CreditNoteFormProvider creditNoteId={idAsInteger}>

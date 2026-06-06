@@ -21,7 +21,7 @@ import {
   DashboardActionViewsList,
   DashboardActionsBar,
 } from '@/components';
-import { useRefreshJournals } from '@/hooks/query/manualJournals';
+import { useRefreshJournals } from '@/hooks/query/manual-journals';
 import { useManualJournalsContext } from './ManualJournalsListProvider';
 import { ManualJournalAction, AbilitySubject } from '@/constants/abilityOption';
 
@@ -39,7 +39,7 @@ import { useBulkDeleteManualJournalsDialog } from './hooks/use-bulk-delete-manua
 /**
  * Manual journal actions bar.
  */
-function ManualJournalActionsBar({
+function ManualJournalActionsBarInner({
   // #withManualJournalsActions
   setManualJournalsTableState,
 
@@ -72,10 +72,8 @@ function ManualJournalActionsBar({
   const onClickNewManualJournal = () => {
     history.push('/make-journal-entry');
   };
-  const {
-    openBulkDeleteDialog,
-    isValidatingBulkDeleteManualJournals,
-  } = useBulkDeleteManualJournalsDialog();
+  const { openBulkDeleteDialog, isValidatingBulkDeleteManualJournals } =
+    useBulkDeleteManualJournalsDialog();
 
   const handleBulkDelete = () => {
     openBulkDeleteDialog(manualJournalsSelectedRows);
@@ -206,15 +204,17 @@ function ManualJournalActionsBar({
   );
 }
 
-export default compose(
+export const ManualJournalActionsBar = compose(
   withDialogActions,
   withManualJournalsActions,
   withSettingsActions,
-  withManualJournals(({ manualJournalsTableState, manualJournalsSelectedRows }) => ({
-    manualJournalsFilterConditions: manualJournalsTableState.filterRoles,
-    manualJournalsSelectedRows,
-  })),
+  withManualJournals(
+    ({ manualJournalsTableState, manualJournalsSelectedRows }) => ({
+      manualJournalsFilterConditions: manualJournalsTableState.filterRoles,
+      manualJournalsSelectedRows,
+    }),
+  ),
   withSettings(({ manualJournalsSettings }) => ({
     manualJournalsTableSize: manualJournalsSettings?.tableSize,
   })),
-)(ManualJournalActionsBar);
+)(ManualJournalActionsBarInner);

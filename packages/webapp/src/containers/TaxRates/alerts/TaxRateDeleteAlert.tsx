@@ -3,7 +3,7 @@ import React from 'react';
 import { Intent, Alert } from '@blueprintjs/core';
 import { AppToaster, FormattedMessage as T } from '@/components';
 
-import { useDeleteTaxRate } from '@/hooks/query/taxRates';
+import { useDeleteTaxRate } from '@/hooks/query/tax-rates';
 
 import { withAlertStoreConnect } from '@/containers/Alert/withAlertStoreConnect';
 import { withAlertActions } from '@/containers/Alert/withAlertActions';
@@ -15,7 +15,7 @@ import { DRAWERS } from '@/constants/drawers';
 /**
  * Item delete alerts.
  */
-function TaxRateDeleteAlert({
+function TaxRateDeleteAlertInner({
   name,
 
   // #withAlertStoreConnect
@@ -85,8 +85,8 @@ function TaxRateDeleteAlert({
   );
 }
 
-export default compose(
+export const TaxRateDeleteAlert = compose(
   withAlertStoreConnect(),
   withAlertActions,
   withDrawerActions,
-)(TaxRateDeleteAlert);
+)(TaxRateDeleteAlertInner);

@@ -11,7 +11,7 @@ import {
 } from '@/components';
 import { TABLES } from '@/constants/tables';
 
-import ReceiptsEmptyStatus from './ReceiptsEmptyStatus';
+import { ReceiptsEmptyStatus } from './ReceiptsEmptyStatus';
 
 import { withReceipts } from './withReceipts';
 import { withReceiptsActions } from './withReceiptsActions';
@@ -126,7 +126,7 @@ function ReceiptsDataTable({
     <DashboardContentTable>
       <DataTable
         columns={columns}
-        data={receipts}
+        data={receipts ?? []}
         loading={isReceiptsLoading}
         headerLoading={isReceiptsLoading}
         progressBarLoading={isReceiptsFetching}
@@ -136,8 +136,8 @@ function ReceiptsDataTable({
         noInitialFetch={true}
         sticky={true}
         pagination={true}
-        initialPageSize={receiptTableState.pageSize}
-        pagesCount={pagination.pagesCount}
+        initialPageSize={receiptTableState?.pageSize ?? 10}
+        rowsCount={pagination?.total ?? 0}
         manualPagination={true}
         autoResetSortBy={false}
         autoResetPage={false}
@@ -162,7 +162,7 @@ function ReceiptsDataTable({
   );
 }
 
-export default compose(
+export const ReceiptsTable = compose(
   withAlertActions,
   withReceiptsActions,
   withDrawerActions,

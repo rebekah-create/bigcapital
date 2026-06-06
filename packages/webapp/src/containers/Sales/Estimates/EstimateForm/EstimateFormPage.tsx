@@ -3,7 +3,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { css } from '@emotion/css';
 
-import EstimateForm from './EstimateForm';
+import { EstimateForm } from './EstimateForm';
 import {
   EstimateFormProvider,
   useEstimateFormContext,
@@ -14,9 +14,9 @@ import { DashboardInsider } from '@/components';
 /**
  * Estimate form page.
  */
-export default function EstimateFormPage() {
+export function EstimateFormPage() {
   const { id } = useParams();
-  const idInteger = parseInt(id, 10);
+  const idInteger = id ? parseInt(id, 10) : undefined;
 
   return (
     <EstimateFormProvider estimateId={idInteger}>

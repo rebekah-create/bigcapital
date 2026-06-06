@@ -15,7 +15,7 @@ import { compose } from '@/utils';
  * Project tasks delete alert.
  * @returns
  */
-function ProjectTaskDeleteAlert({
+function ProjectTaskDeleteAlertInner({
   name,
 
   // #withAlertStoreConnect
@@ -66,13 +66,15 @@ function ProjectTaskDeleteAlert({
       loading={isLoading}
     >
       <p>
-        <FormattedHTMLMessage id={'project_task.alert.once_delete_this_project'} />
+        <FormattedHTMLMessage
+          id={'project_task.alert.once_delete_this_project'}
+        />
       </p>
     </Alert>
   );
 }
 
-export default compose(
+export const ProjectTaskDeleteAlert = compose(
   withAlertStoreConnect(),
   withAlertActions,
-)(ProjectTaskDeleteAlert);
+)(ProjectTaskDeleteAlertInner);

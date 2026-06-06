@@ -8,24 +8,24 @@ import {
   Col,
   DetailsMenu,
   DetailItem,
-  FormattedMessage as T,
   CommercialDocHeader,
   CommercialDocTopHeader,
 } from '@/components';
 import { ManualJournalDetailsStatus } from './utils';
 import { useManualJournalDrawerContext } from './ManualJournalDrawerProvider';
+import intl from 'react-intl-universal';
 
 /**
  * Manual journal details header.
  */
-export default function ManualJournalDrawerHeader() {
+export function ManualJournalDrawerHeader() {
   const { manualJournal } = useManualJournalDrawerContext();
 
   return (
     <CommercialDocHeader>
       <CommercialDocTopHeader>
         <DetailsMenu>
-          <DetailItem name={'total'} label={<T id={'total'} />}>
+          <DetailItem name={'total'} label={intl.get('total')}>
             <h3 class="big-number">{manualJournal.formatted_amount}</h3>
           </DetailItem>
 
@@ -38,23 +38,23 @@ export default function ManualJournalDrawerHeader() {
       <Row>
         <Col xs={6}>
           <DetailsMenu direction={'horizantal'} minLabelSize={'180px'}>
-            <DetailItem name={'journal-type'} label={<T id={'journal_type'} />}>
+            <DetailItem name={'journal-type'} label={intl.get('journal_type')}>
               {manualJournal.journal_type}
             </DetailItem>
 
-            <DetailItem name={'journal-number'} label={<T id={'journal_no'} />}>
+            <DetailItem name={'journal-number'} label={intl.get('journal_no')}>
               {manualJournal.journal_number}
             </DetailItem>
 
-            <DetailItem name={'reference-no'} label={<T id={'reference_no'} />}>
+            <DetailItem name={'reference-no'} label={intl.get('reference_no')}>
               {defaultTo(manualJournal.reference, '-')}
             </DetailItem>
 
-            <DetailItem name={'currency'} label={<T id={'currency'} />}>
+            <DetailItem name={'currency'} label={intl.get('currency')}>
               {manualJournal.currency_code}
             </DetailItem>
 
-            <DetailItem label={<T id={'description'} />}>
+            <DetailItem label={intl.get('description')}>
               {defaultTo(manualJournal.description, '—')}
             </DetailItem>
           </DetailsMenu>

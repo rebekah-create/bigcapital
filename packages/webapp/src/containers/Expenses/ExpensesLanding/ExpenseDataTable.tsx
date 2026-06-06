@@ -13,7 +13,7 @@ import {
 } from '@/components';
 import { TABLES } from '@/constants/tables';
 
-import ExpensesEmptyStatus from './ExpensesEmptyStatus';
+import { InvoicesEmptyStatus as ExpensesEmptyStatus } from './ExpensesEmptyStatus';
 
 import { withDashboardActions } from '@/containers/Dashboard/withDashboardActions';
 import { withExpensesActions } from './withExpensesActions';
@@ -118,7 +118,7 @@ function ExpensesDataTable({
     <DashboardContentTable>
       <DataTable
         columns={columns}
-        data={expenses}
+        data={expenses || []}
         loading={isExpensesLoading}
         headerLoading={isExpensesLoading}
         progressBarLoading={isExpensesFetching}
@@ -127,10 +127,10 @@ function ExpensesDataTable({
         sticky={true}
         onFetchData={handleFetchData}
         pagination={true}
-        initialPageSize={expensesTableState.pageSize}
+        initialPageSize={expensesTableState?.pageSize ?? 10}
         manualSortBy={true}
         manualPagination={true}
-        pagesCount={pagination.pagesCount}
+        rowsCount={pagination?.total ?? 0}
         autoResetSortBy={false}
         autoResetPage={false}
         TableLoadingRenderer={TableSkeletonRows}
@@ -152,7 +152,7 @@ function ExpensesDataTable({
   );
 }
 
-export default compose(
+export const ExpenseDataTable = compose(
   withDashboardActions,
   withAlertActions,
   withDrawerActions,

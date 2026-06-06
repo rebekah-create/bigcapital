@@ -6,7 +6,9 @@ import withDialogRedux from '@/components/DialogReduxConnect';
 import { compose } from '@/utils';
 
 const RefundCreditNoteDialogContent = React.lazy(() =>
-  import('./RefundCreditNoteDialogContent'),
+  import('./RefundCreditNoteDialogContent').then((m) => ({
+    default: m.RefundCreditNoteDialogContent,
+  })),
 );
 
 /**
@@ -36,4 +38,4 @@ function RefundCreditNoteDialog({
     </Dialog>
   );
 }
-export default compose(withDialogRedux())(RefundCreditNoteDialog);
+export const index = compose(withDialogRedux())(RefundCreditNoteDialog);

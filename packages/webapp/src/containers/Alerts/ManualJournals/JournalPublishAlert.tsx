@@ -2,7 +2,7 @@
 import React from 'react';
 import intl from 'react-intl-universal';
 import { Intent, Alert } from '@blueprintjs/core';
-import { AppToaster,FormattedMessage as T } from '@/components';
+import { AppToaster, FormattedMessage as T } from '@/components';
 import { usePublishJournal } from '@/hooks/query';
 
 import { withAlertActions } from '@/containers/Alert/withAlertActions';
@@ -13,7 +13,7 @@ import { compose } from '@/utils';
 /**
  * Journal publish alert.
  */
-function JournalPublishAlert({
+function JournalPublishAlertInner({
   name,
 
   // #withAlertStoreConnect
@@ -23,7 +23,6 @@ function JournalPublishAlert({
   // #withAlertActions
   closeAlert,
 }) {
-  
   const { mutateAsync: publishJournalMutate, isLoading } = usePublishJournal();
 
   // Handle cancel manual journal alert.
@@ -40,14 +39,12 @@ function JournalPublishAlert({
           intent: Intent.SUCCESS,
         });
       })
-      .catch((error) => {
-        
-      })
+      .catch((error) => {})
       .finally(() => {
         closeAlert(name);
       });
   };
-  
+
   return (
     <Alert
       cancelButtonText={<T id={'cancel'} />}
@@ -65,7 +62,7 @@ function JournalPublishAlert({
   );
 }
 
-export default compose(
+export const JournalPublishAlert = compose(
   withAlertStoreConnect(),
   withAlertActions,
-)(JournalPublishAlert)
+)(JournalPublishAlertInner);

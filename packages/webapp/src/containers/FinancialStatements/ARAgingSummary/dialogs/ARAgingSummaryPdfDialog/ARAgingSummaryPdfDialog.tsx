@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { lazy } from 'react';
 import classNames from 'classnames';
 
@@ -7,16 +6,22 @@ import withDialogRedux from '@/components/DialogReduxConnect';
 import { CLASSES } from '@/constants/classes';
 import { compose } from '@/utils';
 
-// Lazy loading the content.
-const ARAgingSummaryPdfDialogContent = lazy(
-  () => import('./ARAgingSummaryPdfDialogContent'),
+const ARAgingSummaryPdfDialogContent = lazy(() =>
+  import('./ARAgingSummaryPdfDialogContent').then((m) => ({
+    default: m.ARAgingSummaryPdfDialogContent,
+  })),
 );
 
-/**
- * Balance sheet pdf preview dialog.
- * @returns {React.ReactNode}
- */
-function ARAgingSummaryPdfDialogRoot({ dialogName, payload, isOpen }) {
+interface ARAgingSummaryPdfDialogRootProps {
+  dialogName: string;
+  payload?: Record<string, unknown>;
+  isOpen: boolean;
+}
+
+function ARAgingSummaryPdfDialogRoot({
+  dialogName,
+  isOpen,
+}: ARAgingSummaryPdfDialogRootProps) {
   return (
     <Dialog
       name={dialogName}

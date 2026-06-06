@@ -23,7 +23,7 @@ import { useMemorizedColumnsWidths } from '@/hooks';
 import { useAccountTransactionsColumns, ActionsMenu } from './components';
 import { useAccountTransactionsAllContext } from './AccountTransactionsAllBoot';
 import { useAccountTransactionsContext } from './AccountTransactionsProvider';
-import { useUnmatchMatchedUncategorizedTransaction } from '@/hooks/query/bank-rules';
+import { useUnmatchMatchedUncategorizedTransaction } from '@/hooks/query/banking';
 import { useUncategorizeTransaction } from '@/hooks/query';
 import { handleCashFlowTransactionType } from './utils';
 
@@ -32,7 +32,7 @@ import { compose } from '@/utils';
 /**
  * Account transactions data table.
  */
-function AccountTransactionsDataTable({
+function AccountTransactionsDataTableInner({
   // #withSettings
   cashflowTansactionsTableSize,
 
@@ -153,14 +153,14 @@ function AccountTransactionsDataTable({
   );
 }
 
-export default compose(
+export const AccountTransactionsDataTable = compose(
   withSettings(({ cashflowTransactionsSettings }) => ({
     cashflowTansactionsTableSize: cashflowTransactionsSettings?.tableSize,
   })),
   withAlertActions,
   withDrawerActions,
   withBankingActions,
-)(AccountTransactionsDataTable);
+)(AccountTransactionsDataTableInner);
 
 const DashboardConstrantTable = styled(DataTable)`
   .table {

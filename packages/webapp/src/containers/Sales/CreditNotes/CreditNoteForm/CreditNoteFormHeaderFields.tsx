@@ -25,6 +25,7 @@ import { useCreditNoteFormContext } from './CreditNoteFormProvider';
 import { CreditNoteExchangeRateInputField } from './components';
 import { CreditNoteTransactionNoField } from './CreditNoteTransactionNoField';
 import { useCustomerUpdateExRate } from '@/containers/Entries/withExRateItemEntriesPriceRecalc';
+import intl from 'react-intl-universal';
 
 const getCreditNoteFieldsStyle = (theme: Theme) => css`
   .${theme.bpPrefix}-form-group {
@@ -45,7 +46,7 @@ const getCreditNoteFieldsStyle = (theme: Theme) => css`
 /**
  * Credit note form header fields.
  */
-export default function CreditNoteFormHeaderFields() {
+export function CreditNoteFormHeaderFields() {
   const theme = useTheme();
   const styleClassName = getCreditNoteFieldsStyle(theme);
 
@@ -60,7 +61,7 @@ export default function CreditNoteFormHeaderFields() {
       {/* ----------- Credit note date ----------- */}
       <FFormGroup
         name={'credit_note_date'}
-        label={<T id={'credit_note.label_credit_note_date'} />}
+        label={intl.get('credit_note.label_credit_note_date')}
         labelInfo={<FieldRequiredHint />}
         inline
         fastField
@@ -72,7 +73,7 @@ export default function CreditNoteFormHeaderFields() {
           popoverProps={{ position: Position.BOTTOM_LEFT, minimal: true }}
           inputProps={{
             leftIcon: <Icon icon={'date-range'} />,
-            fill: true
+            fill: true,
           }}
           fill
           fastField
@@ -83,7 +84,7 @@ export default function CreditNoteFormHeaderFields() {
       <CreditNoteTransactionNoField />
 
       {/* ----------- Reference ----------- */}
-      <FormGroup label={<T id={'reference_no'} />} name={'reference_no'} inline>
+      <FormGroup label={intl.get('reference_no')} name={'reference_no'} inline>
         <InputGroup name={'reference_no'} minimal />
       </FormGroup>
     </Stack>
@@ -112,7 +113,7 @@ function CreditNoteCustomersSelect() {
   return (
     <FFormGroup
       name={'customer_id'}
-      label={<T id={'customer_name'} />}
+      label={intl.get('customer_name')}
       labelInfo={<FieldRequiredHint />}
       inline={true}
       fastField={true}

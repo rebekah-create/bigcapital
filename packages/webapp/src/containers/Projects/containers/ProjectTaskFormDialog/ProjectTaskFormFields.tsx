@@ -7,18 +7,18 @@ import {
   FInputGroup,
   Col,
   Row,
-  FormattedMessage as T,
   InputPrependText,
 } from '@/components';
 import { EstimateAmount } from './utils';
 import { withCurrentOrganization } from '@/containers/Organization/withCurrentOrganization';
 import { compose } from '@/utils';
+import intl from 'react-intl-universal';
 
 /**
  * Project task form fields.
  * @returns
  */
-function ProjectTaskFormFields({
+function ProjectTaskFormFieldsInner({
   // #withCurrentOrganization
   organization: { base_currency },
 }) {
@@ -29,7 +29,7 @@ function ProjectTaskFormFields({
     <div className={Classes.DIALOG_BODY}>
       {/*------------ Task Name -----------*/}
       <FFormGroup
-        label={<T id={'project_task.dialog.task_name'} />}
+        label={intl.get('project_task.dialog.task_name')}
         name={'taskName'}
       >
         <FInputGroup name="name" />
@@ -38,7 +38,7 @@ function ProjectTaskFormFields({
       <Row>
         <Col xs={4}>
           <FFormGroup
-            label={<T id={'project_task.dialog.estimated_hours'} />}
+            label={intl.get('project_task.dialog.estimated_hours')}
             name={'estimate_hours'}
           >
             <FInputGroup name="estimate_hours" />
@@ -49,7 +49,7 @@ function ProjectTaskFormFields({
           <FFormGroup
             name={'rate'}
             className={'form-group--select-list'}
-            label={<T id={'project_task.dialog.charge'} />}
+            label={intl.get('project_task.dialog.charge')}
           >
             <ControlGroup>
               <InputPrependText text={'Hourly Price'} />
@@ -67,4 +67,6 @@ function ProjectTaskFormFields({
   );
 }
 
-export default compose(withCurrentOrganization())(ProjectTaskFormFields);
+export const ProjectTaskFormFields = compose(withCurrentOrganization())(
+  ProjectTaskFormFieldsInner,
+);

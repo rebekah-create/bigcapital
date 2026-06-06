@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from 'react';
 import intl from 'react-intl-universal';
 import styled from 'styled-components';
@@ -11,21 +10,18 @@ import { useARAgingSummaryColumns } from './components';
 
 import { tableRowTypesToClassnames } from '@/utils';
 
-/**
- * AR aging summary table sheet.
- */
-export default function ReceivableAgingSummaryTable({
-  // #ownProps
-  organizationName,
-}) {
-  // AR aging summary report context.
-  const {
-    ARAgingSummary: { table, query, meta },
-    isARAgingLoading,
-  } = useARAgingSummaryContext();
+interface ARAgingSummaryTableProps {
+  organizationName: string;
+}
 
-  // AR aging summary columns.
+export function ARAgingSummaryTable({
+  organizationName,
+}: ARAgingSummaryTableProps) {
+  const { ARAgingSummary, isARAgingLoading } = useARAgingSummaryContext();
+
   const columns = useARAgingSummaryColumns();
+  const table = (ARAgingSummary as any)?.table;
+  const meta = (ARAgingSummary as any)?.meta;
 
   return (
     <FinancialSheet
@@ -36,7 +32,7 @@ export default function ReceivableAgingSummaryTable({
     >
       <ARAgingSummaryDataTable
         columns={columns}
-        data={table.rows}
+        data={table?.rows ?? []}
         rowClassNames={tableRowTypesToClassnames}
         noInitialFetch={true}
         sticky={true}

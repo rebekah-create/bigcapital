@@ -7,16 +7,20 @@ import { omit } from 'lodash';
 import { AppToaster } from '@/components';
 import { CreateQuickPaymentMadeFormSchema } from './QuickPaymentMade.schema';
 import { useQuickPaymentMadeContext } from './QuickPaymentMadeFormProvider';
-import QuickPaymentMadeFormContent from './QuickPaymentMadeFormContent';
+import { QuickPaymentMadeFormContent } from './QuickPaymentMadeFormContent';
 
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
-import { defaultPaymentMade, transformBillToForm, transformErrors } from './utils';
+import {
+  defaultPaymentMade,
+  transformBillToForm,
+  transformErrors,
+} from './utils';
 import { compose } from '@/utils';
 
 /**
  * Quick payment made form.
  */
-function QuickPaymentMadeForm({
+function QuickPaymentMadeFormInner({
   // #withDialogActions
   closeDialog,
 }) {
@@ -73,4 +77,6 @@ function QuickPaymentMadeForm({
   );
 }
 
-export default compose(withDialogActions)(QuickPaymentMadeForm);
+export const QuickPaymentMadeForm = compose(withDialogActions)(
+  QuickPaymentMadeFormInner,
+);

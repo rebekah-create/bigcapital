@@ -9,7 +9,9 @@ import { compose } from '@/utils';
 
 // Lazy loading the content.
 const PdfPreviewDialogContent = React.lazy(() =>
-  import('./ReceiptPdfPreviewDialogContent'),
+  import('./ReceiptPdfPreviewDialogContent').then((m) => ({
+    default: m.ReceiptPdfPreviewDialogContent,
+  })),
 );
 
 /**
@@ -39,4 +41,4 @@ function ReceiptPdfPreviewDialog({
     </Dialog>
   );
 }
-export default compose(withDialogRedux())(ReceiptPdfPreviewDialog);
+export const index = compose(withDialogRedux())(ReceiptPdfPreviewDialog);

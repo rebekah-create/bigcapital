@@ -12,7 +12,7 @@ import { useMemorizedColumnsWidths } from '@/hooks';
 import { useWarehouseTransfersTableColumns, ActionsMenu } from './components';
 import { useWarehouseTranfersListContext } from './WarehouseTransfersListProvider';
 
-import WarehouseTransfersEmptyStatus from './WarehouseTransfersEmptyStatus';
+import { WarehouseTransfersEmptyStatus } from './WarehouseTransfersEmptyStatus';
 import { withWarehouseTransfersActions } from './withWarehouseTransfersActions';
 import { withDrawerActions } from '@/containers/Drawer/withDrawerActions';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
@@ -26,7 +26,7 @@ import { DRAWERS } from '@/constants/drawers';
 /**
  * Warehouse transfers datatable.
  */
-function WarehouseTransfersDataTable({
+function WarehouseTransfersDataTableInner({
   // #withWarehouseTransfersActions
   setWarehouseTransferTableState,
 
@@ -112,7 +112,7 @@ function WarehouseTransfersDataTable({
     <DashboardContentTable>
       <DataTable
         columns={columns}
-        data={warehousesTransfers}
+        data={warehousesTransfers ?? []}
         loading={isWarehouseTransfersLoading}
         headerLoading={isWarehouseTransfersLoading}
         progressBarLoading={isWarehouseTransfersFetching}
@@ -123,7 +123,7 @@ function WarehouseTransfersDataTable({
         sticky={true}
         pagination={true}
         manualPagination={true}
-        pagesCount={pagination.pagesCount}
+        rowsCount={pagination?.total ?? 0}
         autoResetSortBy={false}
         autoResetPage={false}
         TableLoadingRenderer={TableSkeletonRows}
@@ -144,7 +144,7 @@ function WarehouseTransfersDataTable({
     </DashboardContentTable>
   );
 }
-export default compose(
+export const WarehouseTransfersDataTable = compose(
   withDashboardActions,
   withWarehouseTransfersActions,
   withAlertActions,
@@ -153,4 +153,4 @@ export default compose(
   withSettings(({ warehouseTransferSettings }) => ({
     warehouseTransferTableSize: warehouseTransferSettings?.tableSize,
   })),
-)(WarehouseTransfersDataTable);
+)(WarehouseTransfersDataTableInner);

@@ -26,16 +26,15 @@ function ProjectFormProvider({
   });
 
   // Handle fetch customers data table or list
-  const {
-    data: { customers },
-    isLoading: isCustomersLoading,
-  } = useCustomers({ page_size: 10000 });
+  const { data: customersData, isLoading: isCustomersLoading } = useCustomers({
+    page_size: 10000,
+  });
 
   const isNewMode = !projectId;
 
   // State provider.
   const provider = {
-    customers,
+    customers: customersData?.customers,
     dialogName,
     project,
     projectId,

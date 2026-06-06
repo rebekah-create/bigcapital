@@ -6,7 +6,9 @@ import withDialogRedux from '@/components/DialogReduxConnect';
 import { compose } from 'redux';
 
 const MoneyOutDialogContent = React.lazy(() =>
-  import('./MoneyOutDialogContent'),
+  import('./MoneyOutDialogContent').then((m) => ({
+    default: m.MoneyOutDialogContent,
+  })),
 );
 
 /**
@@ -40,4 +42,4 @@ function MoneyOutDialog({
   );
 }
 
-export default compose(withDialogRedux())(MoneyOutDialog);
+export const index = compose(withDialogRedux())(MoneyOutDialog);

@@ -10,7 +10,7 @@ import {
   DashboardContentTable,
 } from '@/components';
 
-import VendorsEmptyStatus from './VendorsEmptyStatus';
+import { VendorsEmptyStatus } from './VendorsEmptyStatus';
 import { useVendorsListContext } from './VendorsListProvider';
 import { useMemorizedColumnsWidths } from '@/hooks';
 import { ActionsMenu, useVendorsTableColumns } from './components';
@@ -28,7 +28,7 @@ import { DRAWERS } from '@/constants/drawers';
 /**
  * Vendors table.
  */
-function VendorsTable({
+function VendorsTableInner({
   // #withVendorsActions
   setVendorsTableState,
   setVendorsSelectedRows,
@@ -137,7 +137,7 @@ function VendorsTable({
       <DataTable
         noInitialFetch={true}
         columns={columns}
-        data={vendors}
+        data={vendors ?? []}
         loading={isVendorsLoading}
         headerLoading={isVendorsLoading}
         progressBarLoading={isVendorsFetching}
@@ -146,9 +146,9 @@ function VendorsTable({
         expandable={false}
         sticky={true}
         pagination={true}
-        initialPageSize={vendorsTableState.pageSize}
+        initialPageSize={vendorsTableState?.pageSize ?? 10}
         manualSortBy={true}
-        pagesCount={pagination.pagesCount}
+        rowsCount={pagination?.total ?? 0}
         autoResetSortBy={false}
         autoResetPage={false}
         onSelectedRowsChange={handleSelectedRowsChange}
@@ -173,7 +173,7 @@ function VendorsTable({
   );
 }
 
-export default compose(
+export const VendorsTable = compose(
   withVendorsActions,
   withAlertActions,
   withDialogActions,
@@ -183,4 +183,4 @@ export default compose(
   withSettings(({ vendorsSettings }) => ({
     vendorsTableSize: vendorsSettings?.tableSize,
   })),
-)(VendorsTable);
+)(VendorsTableInner);

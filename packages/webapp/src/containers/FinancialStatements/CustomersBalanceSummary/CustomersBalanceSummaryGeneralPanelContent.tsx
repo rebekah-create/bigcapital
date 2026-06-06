@@ -1,7 +1,5 @@
-// @ts-nocheck
 import { Position } from '@blueprintjs/core';
 import {
-  FormattedMessage as T,
   Row,
   Col,
   FieldHint,
@@ -13,12 +11,13 @@ import {
 import { momentFormatter } from '@/utils';
 import { filterCustomersOptions } from '../constants';
 import { useCustomersBalanceSummaryGeneralContext } from './CustomersBalanceSummaryGeneralProvider';
-import FinancialStatementsFilter from '../FinancialStatementsFilter';
+import { FinancialStatementsFilter } from '../FinancialStatementsFilter';
+import intl from 'react-intl-universal';
 
 /**
  * Customers balance header - General panel - Content
  */
-export default function CustomersBalanceSummaryGeneralPanelContent() {
+export function CustomersBalanceSummaryGeneralPanelContent() {
   const { customers } = useCustomersBalanceSummaryGeneralContext();
 
   return (
@@ -27,7 +26,7 @@ export default function CustomersBalanceSummaryGeneralPanelContent() {
         <Col xs={5}>
           <FFormGroup
             name={'asDate'}
-            label={<T id={'as_date'} />}
+            label={intl.get('as_date')}
             labelInfo={<FieldHint />}
             fill
             fastField
@@ -55,7 +54,7 @@ export default function CustomersBalanceSummaryGeneralPanelContent() {
               name={'percentage_column'}
               inline={true}
               small={true}
-              label={<T id={'percentage_of_column'} />}
+              label={intl.get('percentage_of_column')}
               fastField
             />
           </FFormGroup>
@@ -66,7 +65,7 @@ export default function CustomersBalanceSummaryGeneralPanelContent() {
         <Col xs={5}>
           <FinancialStatementsFilter
             items={filterCustomersOptions}
-            label={<T id={'customers.label_filter_customers'} />}
+            label={intl.get('customers.label_filter_customers')}
             initialSelectedItem={'with-transactions'}
           />
         </Col>
@@ -76,7 +75,7 @@ export default function CustomersBalanceSummaryGeneralPanelContent() {
         <Col xs={5}>
           <FFormGroup
             name={'customersIds'}
-            label={<T id={'specific_customers'} />}
+            label={intl.get('specific_customers')}
           >
             <CustomersMultiSelect name={'customersIds'} items={customers} />
           </FFormGroup>

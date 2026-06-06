@@ -1,20 +1,17 @@
 // @ts-nocheck
 import React from 'react';
-import WarehousesEmptyStatus from './WarehousesEmptyStatus';
+import { WarehousesEmptyStatus } from './WarehousesEmptyStatus';
 import { useWarehousesContext } from './WarehousesProvider';
 import { WarehousesList, WarehousesSkeleton } from './components';
-import WarehousesGridItems from './WarehousesGridItems';
+import { WarehousesGridItems } from './WarehousesGridItems';
 
 /**
  * Warehouses grid.
  */
-export default function WarehousesGrid() {
+export function WarehousesGrid() {
   // Retrieve list context.
-  const {
-    warehouses,
-    isWarehouesLoading,
-    isEmptyStatus,
-  } = useWarehousesContext();
+  const { warehouses, isWarehouesLoading, isEmptyStatus } =
+    useWarehousesContext();
 
   return (
     <React.Fragment>

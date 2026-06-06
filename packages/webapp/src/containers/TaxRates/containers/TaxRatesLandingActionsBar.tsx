@@ -67,4 +67,5 @@ function TaxRatesActionsBar({
   );
 }
 
-export default compose(withDialogActions)(TaxRatesActionsBar);
+export const TaxRatesLandingActionsBar =
+  compose(withDialogActions)(TaxRatesActionsBar);

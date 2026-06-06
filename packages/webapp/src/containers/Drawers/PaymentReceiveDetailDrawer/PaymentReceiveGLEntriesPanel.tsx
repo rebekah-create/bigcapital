@@ -2,8 +2,9 @@
 import styled from 'styled-components';
 
 import { Card } from '@/components';
-import JournalEntriesTable, {
+import {
   AmountDisplayedBaseCurrencyMessage,
+  JournalEntriesTable,
 } from '../../JournalEntriesTable/JournalEntriesTable';
 
 import { useTransactionsByReference } from '@/hooks/query';

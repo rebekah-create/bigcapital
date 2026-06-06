@@ -10,7 +10,7 @@ import { AppToaster } from '@/components';
 import { CreateVendorOpeningBalanceFormSchema } from './VendorOpeningBalanceForm.schema';
 import { useVendorOpeningBalanceContext } from './VendorOpeningBalanceFormProvider';
 
-import VendorOpeningBalanceFormContent from './VendorOpeningBalanceFormContent';
+import { VendorOpeningBalanceFormContent } from './VendorOpeningBalanceFormContent';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
 
 import { compose } from '@/utils';
@@ -26,7 +26,7 @@ const defaultInitialValues = {
  * Vendor Opening balance form.
  * @returns
  */
-function VendorOpeningBalanceForm({
+function VendorOpeningBalanceFormInner({
   // #withDialogActions
   closeDialog,
 }) {
@@ -38,14 +38,15 @@ function VendorOpeningBalanceForm({
     ...defaultInitialValues,
     ...vendor,
     opening_balance: defaultTo(vendor.opening_balance, ''),
-
   };
 
   // Handles the form submit.
   const handleFormSubmit = (values, { setSubmitting, setErrors }) => {
     const formValues = {
       ...values,
-      opening_balance_at: moment(values.opening_balance_at).format('YYYY-MM-DD'),
+      opening_balance_at: moment(values.opening_balance_at).format(
+        'YYYY-MM-DD',
+      ),
     };
 
     // Handle request response success.
@@ -82,4 +83,6 @@ function VendorOpeningBalanceForm({
     />
   );
 }
-export default compose(withDialogActions)(VendorOpeningBalanceForm);
+export const VendorOpeningBalanceForm = compose(withDialogActions)(
+  VendorOpeningBalanceFormInner,
+);

@@ -19,7 +19,7 @@ import { AuthSubmitButton, AuthenticationLoadingOverlay } from './_components';
 /**
  * Register form.
  */
-export default function RegisterForm({ isSubmitting }) {
+export function RegisterForm({ isSubmitting }) {
   const [showPassword, setShowPassword] = React.useState<boolean>(false);
 
   // Handle password revealer changing.
@@ -43,23 +43,23 @@ export default function RegisterForm({ isSubmitting }) {
     <RegisterFormRoot>
       <Row className={'name-section'}>
         <Col md={6}>
-          <FFormGroup name={'first_name'} label={<T id={'first_name'} />}>
+          <FFormGroup name={'first_name'} label={intl.get('first_name')}>
             <FInputGroup name={'first_name'} large={true} />
           </FFormGroup>
         </Col>
 
         <Col md={6}>
-          <FFormGroup name={'last_name'} label={<T id={'last_name'} />}>
+          <FFormGroup name={'last_name'} label={intl.get('last_name')}>
             <FInputGroup name={'last_name'} large={true} />
           </FFormGroup>
         </Col>
       </Row>
 
-      <FFormGroup name={'email'} label={<T id={'email'} />}>
+      <FFormGroup name={'email'} label={intl.get('email')}>
         <FInputGroup name={'email'} large={true} />
       </FFormGroup>
 
-      <FFormGroup name={'password'} label={<T id={'password'} />}>
+      <FFormGroup name={'password'} label={intl.get('password')}>
         <FInputGroup
           name={'password'}
           type={showPassword ? 'text' : 'password'}

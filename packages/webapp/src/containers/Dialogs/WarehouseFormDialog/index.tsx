@@ -5,8 +5,10 @@ import withDialogRedux from '@/components/DialogReduxConnect';
 
 import { compose } from '@/utils';
 
-const WarehouseFormDialogContent = React.lazy(
-  () => import('./WarehouseFormDialogContent'),
+const WarehouseFormDialogContent = React.lazy(() =>
+  import('./WarehouseFormDialogContent').then((m) => ({
+    default: m.WarehouseFormDialogContent,
+  })),
 );
 
 /**
@@ -41,4 +43,4 @@ function WarehouseFormDialog({
     </Dialog>
   );
 }
-export default compose(withDialogRedux())(WarehouseFormDialog);
+export const index = compose(withDialogRedux())(WarehouseFormDialog);

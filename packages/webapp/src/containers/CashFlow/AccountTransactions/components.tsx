@@ -5,7 +5,7 @@ import { Intent, Menu, MenuItem, Tag } from '@blueprintjs/core';
 import { Icon } from '@/components';
 import { safeCallback } from '@/utils';
 import { useAccountTransactionsContext } from './AccountTransactionsProvider';
-import FinancialLoadingBar from '@/containers/FinancialStatements/FinancialLoadingBar';
+import { FinancialLoadingBar } from '@/containers/FinancialStatements/FinancialLoadingBar';
 
 export function AccountTransactionsLoadingBar() {
   const {
@@ -56,8 +56,8 @@ const allTransactionsStatusAccessor = (transaction) => {
         transaction.status === 'categorized'
           ? Intent.SUCCESS
           : transaction.status === 'matched'
-          ? Intent.SUCCESS
-          : Intent.NONE
+            ? Intent.SUCCESS
+            : Intent.NONE
       }
       minimal={transaction.status === 'manual'}
     >

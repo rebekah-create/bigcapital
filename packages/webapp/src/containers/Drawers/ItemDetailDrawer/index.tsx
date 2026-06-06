@@ -6,7 +6,9 @@ import { withDrawers } from '@/containers/Drawer/withDrawers';
 import { compose } from '@/utils';
 
 const ItemDetailDrawerContent = React.lazy(() =>
-  import('./ItemDetailDrawerContent'),
+  import('./ItemDetailDrawerContent').then((m) => ({
+    default: m.ItemDetailDrawerContent,
+  })),
 );
 
 /**
@@ -32,4 +34,4 @@ function ItemDetailDrawer({
     </Drawer>
   );
 }
-export default compose(withDrawers())(ItemDetailDrawer);
+export const index = compose(withDrawers())(ItemDetailDrawer);

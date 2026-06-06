@@ -12,7 +12,6 @@ import {
   FDateInput,
   FTextArea,
   FieldRequiredHint,
-  FormattedMessage as T,
   Stack,
 } from '@/components';
 import { useProjectTimeEntryFormContext } from './ProjectTimeEntryFormProvider';
@@ -28,7 +27,7 @@ import { useSetProjectToForm } from './utils';
  * Project time entry form fields.
  * @returns
  */
-function ProjectTimeEntryFormFields() {
+export function ProjectTimeEntryFormFields() {
   // time entry form dialog context.
   const { projectTasks, projects, projectId } =
     useProjectTimeEntryFormContext();
@@ -59,7 +58,7 @@ function ProjectTimeEntryFormFields() {
         {/*------------ Project -----------*/}
         <FFormGroup
           name={'project_id'}
-          label={<T id={'project_time_entry.dialog.project'} />}
+          label={intl.get('project_time_entry.dialog.project')}
           labelInfo={<FieldRequiredHint />}
           className={classNames('form-group--select-list', Classes.FILL)}
         >
@@ -73,7 +72,7 @@ function ProjectTimeEntryFormFields() {
         {/*------------ Task -----------*/}
         <FFormGroup
           name={'task_id'}
-          label={<T id={'project_time_entry.dialog.task'} />}
+          label={intl.get('project_time_entry.dialog.task')}
           labelInfo={<FieldRequiredHint />}
           className={classNames('form-group--select-list', Classes.FILL)}
         >
@@ -109,9 +108,6 @@ function ProjectTimeEntryFormFields() {
     </div>
   );
 }
-
-export default ProjectTimeEntryFormFields;
-
 const DurationInputGroup = styled(FInputGroup)`
   .bp4-input {
     width: 150px;

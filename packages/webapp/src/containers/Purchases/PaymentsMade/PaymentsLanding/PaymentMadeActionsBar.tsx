@@ -30,7 +30,7 @@ import { withSettingsActions } from '@/containers/Settings/withSettingsActions';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
 
 import { usePaymentMadesListContext } from './PaymentMadesListProvider';
-import { useRefreshPaymentMades } from '@/hooks/query/paymentMades';
+import { useRefreshPaymentMades } from '@/hooks/query/payment-mades';
 import { useDownloadExportPdf } from '@/hooks/query/FinancialReports/use-export-pdf';
 
 import { DialogsName } from '@/constants/dialogs';
@@ -39,7 +39,7 @@ import { compose } from '@/utils';
 /**
  * Payment made actions bar.
  */
-function PaymentMadeActionsBar({
+function PaymentMadeActionsBarInner({
   // #withPaymentMadeActions
   setPaymentMadesTableState,
 
@@ -133,7 +133,7 @@ function PaymentMadeActionsBar({
             icon={<Icon icon={'trash-16'} iconSize={16} />}
             text={<T id={'delete'} />}
             intent={Intent.DANGER}
-          // onClick={handleBulkDelete}
+            // onClick={handleBulkDelete}
           />
         </If>
         <Button
@@ -173,7 +173,7 @@ function PaymentMadeActionsBar({
   );
 }
 
-export default compose(
+export const PaymentMadeActionsBar = compose(
   withPaymentMadeActions,
   withSettingsActions,
   withPaymentMade(({ paymentMadesTableState }) => ({
@@ -183,4 +183,4 @@ export default compose(
     paymentMadesTableSize: billPaymentSettings?.tableSize,
   })),
   withDialogActions,
-)(PaymentMadeActionsBar);
+)(PaymentMadeActionsBarInner);

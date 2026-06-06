@@ -13,7 +13,7 @@ import { compose } from '@/utils';
 /**
  * Account activate alert.
  */
-function AccountActivateAlert({
+function AccountActivateAlertInner({
   name,
   isOpen,
   payload: { accountId },
@@ -21,11 +21,7 @@ function AccountActivateAlert({
   // #withAlertActions
   closeAlert,
 }) {
-  
-  const {
-    mutateAsync: activateAccount,
-    isLoading 
-  } = useActivateAccount();
+  const { mutateAsync: activateAccount, isLoading } = useActivateAccount();
 
   // Handle alert cancel.
   const handleCancel = () => {
@@ -34,15 +30,17 @@ function AccountActivateAlert({
 
   // Handle activate account confirm.
   const handleConfirmAccountActivate = () => {
-    activateAccount(accountId).then(() => {
-      AppToaster.show({
-        message: intl.get('the_account_has_been_successfully_activated'),
-        intent: Intent.SUCCESS,
+    activateAccount(accountId)
+      .then(() => {
+        AppToaster.show({
+          message: intl.get('the_account_has_been_successfully_activated'),
+          intent: Intent.SUCCESS,
+        });
+        closeAlert('account-activate');
+      })
+      .finally(() => {
+        closeAlert('account-activate');
       });
-      closeAlert('account-activate');
-    }).finally(() => {
-      closeAlert('account-activate');
-    });
   };
 
   return (
@@ -62,7 +60,7 @@ function AccountActivateAlert({
   );
 }
 
-export default compose(
+export const AccountActivateAlert = compose(
   withAlertStoreConnect(),
   withAlertActions,
-)(AccountActivateAlert);
+)(AccountActivateAlertInner);
