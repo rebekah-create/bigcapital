@@ -2,7 +2,7 @@
 import React from 'react';
 import { isEmpty } from 'lodash';
 import { DashboardInsider } from '@/components/Dashboard';
-import { useTaxRates } from '@/hooks/query/taxRates';
+import { useTaxRates } from '@/hooks/query/tax-rates';
 
 const TaxRatesLandingContext = React.createContext();
 
@@ -25,7 +25,7 @@ function TaxRatesLandingProvider({ tableState, ...props }) {
     taxRates,
     isTaxRatesFetching,
     isTaxRatesLoading,
-    isEmptyStatus
+    isEmptyStatus,
   };
 
   return (

@@ -1,13 +1,22 @@
-// @ts-nocheck
 import * as R from 'ramda';
 import { isEmpty } from 'lodash';
-
 import { Align } from '@/constants';
 import { getColumnWidth } from '@/utils';
 
-const getTableCellValueAccessor = (index) => `cells[${index}].value`;
+interface ReportTableColumn {
+  key: string;
+  label: string;
+  cell_index?: number;
+  children?: ReportTableColumn[];
+}
 
-const getReportColWidth = (data, accessor, headerText) => {
+const getTableCellValueAccessor = (index: number) => `cells[${index}].value`;
+
+const getReportColWidth = (
+  data: unknown[],
+  accessor: string,
+  headerText?: string,
+) => {
   return getColumnWidth(
     data,
     accessor,
@@ -39,7 +48,6 @@ const accountNameMapper = R.curry((data, column) => {
  */
 const assocColumnsToTotalColumn = R.curry((data, column, columnAccessor) => {
   const columns = totalColumnsComposer(data, column);
-
   return R.assoc('columns', columns, columnAccessor);
 });
 
@@ -333,9 +341,9 @@ const dynamicColumnMapper = R.curry((data, column) => {
   )(column);
 });
 
-/**
- * Cash flow dynamic columns.
- */
-export const dynamicColumns = (columns, data) => {
+export const dynamicColumns = (
+  columns: ReportTableColumn[],
+  data: unknown[],
+) => {
   return R.map(dynamicColumnMapper(data), columns);
 };

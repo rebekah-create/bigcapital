@@ -12,7 +12,7 @@ import {
   FormattedHTMLMessage,
 } from '@/components';
 
-import ViewForm from '@/containers/Views/ViewForm';
+import { ViewForm } from '@/containers/Views/ViewForm';
 
 import { compose } from '@/utils';
 
@@ -21,7 +21,7 @@ import { withViewsActions } from '@/containers/Views/withViewsActions';
 import { withDashboardActions } from '@/containers/Dashboard/withDashboardActions';
 
 // @flow
-function ViewFormPage({
+function ViewFormPageInner({
   // #withDashboardActions
   changePageTitle,
   changePageSubtitle,
@@ -44,8 +44,8 @@ function ViewFormPage({
             requestFetchResourceFields(resourceSlug),
           ]
         : viewId
-        ? [requestFetchViewResource(viewId)]
-        : []),
+          ? [requestFetchViewResource(viewId)]
+          : []),
       ...(viewId ? [requestFetchView(viewId)] : []),
     ]);
   }, []);
@@ -123,8 +123,8 @@ function ViewFormPage({
   );
 }
 
-export default compose(
+export const ViewFormPage = compose(
   withDashboardActions,
   withViewsActions,
   withResourcesActions,
-)(ViewFormPage);
+)(ViewFormPageInner);

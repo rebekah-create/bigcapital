@@ -1,4 +1,3 @@
-// @ts-nocheck
 import {
   DialogContent,
   PdfDocumentPreview,
@@ -8,7 +7,7 @@ import { useBalanceSheetPdf } from '@/hooks/query';
 import { AnchorButton } from '@blueprintjs/core';
 import { useBalanceSheetContext } from '../../BalanceSheetProvider';
 
-export default function BalanceSheetPdfDialogContent() {
+export function BalanceSheetPdfDialogContent() {
   const { httpQuery } = useBalanceSheetContext();
   const { isLoading, isLoaded, pdfUrl } = useBalanceSheetPdf({ ...httpQuery });
 
@@ -29,7 +28,6 @@ export default function BalanceSheetPdfDialogContent() {
         <AnchorButton
           href={pdfUrl}
           download={'invoice.pdf'}
-
           disabled={!isLoaded}
           small
           minimal

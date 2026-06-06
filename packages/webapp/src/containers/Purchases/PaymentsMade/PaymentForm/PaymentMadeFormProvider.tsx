@@ -33,16 +33,15 @@ function PaymentMadeFormProvider({ query, paymentMadeId, ...props }) {
 
   // Handle fetch Items data table or list.
   const {
-    data: { items },
+    data: itemsData,
     isFetching: isItemsFetching,
     isLoading: isItemsLoading,
   } = useItems({ page_size: 10000 });
 
   // Handle fetch venders data table or list.
-  const {
-    data: { vendors },
-    isLoading: isVendorsLoading,
-  } = useVendors({ page_size: 10000 });
+  const { data: vendorsData, isLoading: isVendorsLoading } = useVendors({
+    page_size: 10000,
+  });
 
   // Handle fetch specific payment made details.
   const {
@@ -81,8 +80,8 @@ function PaymentMadeFormProvider({ query, paymentMadeId, ...props }) {
     accounts,
     paymentEntriesEditPage,
     paymentMadeEditPage,
-    vendors,
-    items,
+    vendors: vendorsData?.vendors,
+    items: itemsData?.items,
     branches,
     submitPayload,
     paymentVendorId,

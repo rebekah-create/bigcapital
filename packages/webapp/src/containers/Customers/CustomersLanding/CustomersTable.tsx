@@ -2,7 +2,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
-import CustomersEmptyStatus from './CustomersEmptyStatus';
+import { CustomersEmptyStatus } from './CustomersEmptyStatus';
 
 import { TABLES } from '@/constants/tables';
 import {
@@ -29,7 +29,7 @@ import { DRAWERS } from '@/constants/drawers';
 /**
  * Customers table.
  */
-function CustomersTable({
+function CustomersTableInner({
   // #withCustomersActions
   setCustomersTableState,
   setCustomersSelectedRows,
@@ -135,7 +135,7 @@ function CustomersTable({
       <DataTable
         noInitialFetch={true}
         columns={columns}
-        data={customers}
+        data={customers ?? []}
         loading={isCustomersLoading}
         headerLoading={isCustomersLoading}
         progressBarLoading={isCustomersFetching}
@@ -145,10 +145,10 @@ function CustomersTable({
         sticky={true}
         spinnerProps={{ size: 30 }}
         pagination={true}
-        initialPageSize={customersTableState.pageSize}
+        initialPageSize={customersTableState?.pageSize ?? 10}
         manualSortBy={true}
         manualPagination={true}
-        pagesCount={pagination.pagesCount}
+        rowsCount={pagination?.total ?? 0}
         onSelectedRowsChange={handleSelectedRowsChange}
         autoResetSelectedRows={false}
         autoResetSortBy={false}
@@ -173,7 +173,7 @@ function CustomersTable({
   );
 }
 
-export default compose(
+export const CustomersTable = compose(
   withAlertActions,
   withDialogActions,
   withCustomersActions,
@@ -182,4 +182,4 @@ export default compose(
   withSettings(({ customersSettings }) => ({
     customersTableSize: customersSettings?.tableSize,
   })),
-)(CustomersTable);
+)(CustomersTableInner);

@@ -46,7 +46,7 @@ import { useBulkDeleteVendorCreditsDialog } from './hooks/use-bulk-delete-vendor
 /**
  * Vendors Credit note  table actions bar.
  */
-function VendorsCreditNoteActionsBar({
+function VendorsCreditNoteActionsBarInner({
   setVendorCreditsTableState,
 
   // #withVendorsCreditNotes
@@ -110,10 +110,8 @@ function VendorsCreditNoteActionsBar({
     openDrawer(DRAWERS.CREDIT_NOTE_DETAILS);
   };
 
-  const {
-    openBulkDeleteDialog,
-    isValidatingBulkDeleteVendorCredits,
-  } = useBulkDeleteVendorCreditsDialog();
+  const { openBulkDeleteDialog, isValidatingBulkDeleteVendorCredits } =
+    useBulkDeleteVendorCreditsDialog();
 
   if (!isEmpty(vendorsCreditNoteSelectedRows)) {
     const handleBulkDelete = () => {
@@ -224,7 +222,7 @@ function VendorsCreditNoteActionsBar({
   );
 }
 
-export default compose(
+export const VendorsCreditNoteActionsBar = compose(
   withVendorsCreditNotesActions,
   withVendorActions,
   withSettingsActions,
@@ -239,4 +237,4 @@ export default compose(
   })),
   withDialogActions,
   withDrawerActions,
-)(VendorsCreditNoteActionsBar);
+)(VendorsCreditNoteActionsBarInner);

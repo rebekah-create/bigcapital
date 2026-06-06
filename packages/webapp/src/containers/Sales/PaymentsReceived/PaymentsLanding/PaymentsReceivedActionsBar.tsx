@@ -38,7 +38,7 @@ import {
 } from '@/constants/abilityOption';
 
 import { usePaymentsReceivedListContext } from './PaymentsReceivedListProvider';
-import { useRefreshPaymentReceive } from '@/hooks/query/paymentReceives';
+import { useRefreshPaymentReceive } from '@/hooks/query/payment-receives';
 import { useDownloadExportPdf } from '@/hooks/query/FinancialReports/use-export-pdf';
 
 import { compose } from '@/utils';
@@ -50,7 +50,7 @@ import { useBulkDeletePaymentReceivesDialog } from './hooks/use-bulk-delete-paym
 /**
  * Payment receives actions bar.
  */
-function PaymentsReceivedActionsBar({
+function PaymentsReceivedActionsBarInner({
   // #withPaymentsReceivedActions
   setPaymentReceivesTableState,
 
@@ -116,10 +116,8 @@ function PaymentsReceivedActionsBar({
     openDrawer(DRAWERS.BRANDING_TEMPLATES, { resource: 'PaymentReceive' });
   };
 
-  const {
-    openBulkDeleteDialog,
-    isValidatingBulkDeletePaymentReceives,
-  } = useBulkDeletePaymentReceivesDialog();
+  const { openBulkDeleteDialog, isValidatingBulkDeletePaymentReceives } =
+    useBulkDeletePaymentReceivesDialog();
 
   if (!isEmpty(paymentReceivesSelectedRows)) {
     const handleBulkDelete = () => {
@@ -189,7 +187,6 @@ function PaymentsReceivedActionsBar({
           text={<T id={'export'} />}
           onClick={handleExportBtnClick}
         />
-
         <NavbarDivider />
         <DashboardRowsHeightButton
           initialValue={paymentReceivesTableSize}
@@ -227,17 +224,19 @@ function PaymentsReceivedActionsBar({
   );
 }
 
-export default compose(
+export const PaymentsReceivedActionsBar = compose(
   withPaymentsReceivedActions,
   withSettingsActions,
-  withPaymentsReceived(({ paymentReceivesTableState, paymentReceivesSelectedRows }) => ({
-    paymentReceivesTableState,
-    paymentFilterConditions: paymentReceivesTableState.filterRoles,
-    paymentReceivesSelectedRows,
-  })),
+  withPaymentsReceived(
+    ({ paymentReceivesTableState, paymentReceivesSelectedRows }) => ({
+      paymentReceivesTableState,
+      paymentFilterConditions: paymentReceivesTableState.filterRoles,
+      paymentReceivesSelectedRows,
+    }),
+  ),
   withSettings(({ paymentReceiveSettings }) => ({
     paymentReceivesTableSize: paymentReceiveSettings?.tableSize,
   })),
   withDialogActions,
   withDrawerActions,
-)(PaymentsReceivedActionsBar);
+)(PaymentsReceivedActionsBarInner);

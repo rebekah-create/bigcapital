@@ -170,7 +170,7 @@ function CashflowAccountsEmptyState() {
 /**
  * Cashflow accounts grid.
  */
-export default function CashflowAccountsGrid() {
+export function CashflowAccountsGrid() {
   // Retrieve list context.
   const { cashflowAccounts, isCashFlowAccountsLoading } =
     useCashFlowAccountsContext();
@@ -318,7 +318,7 @@ const AccountsEmptyStateBase = styled.div`
 `;
 const AccountsEmptyStateTitle = styled.h1`
   --x-text-color: #626b76;
-  
+
   .bp4-dark & {
     --x-text-color: rgba(255, 255, 255, 0.6);
   }

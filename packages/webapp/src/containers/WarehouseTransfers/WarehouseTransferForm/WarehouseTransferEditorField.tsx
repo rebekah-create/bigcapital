@@ -4,17 +4,17 @@ import { FastField } from 'formik';
 import classNames from 'classnames';
 import { CLASSES } from '@/constants/classes';
 import { useWarehouseTransferFormContext } from './WarehouseTransferFormProvider';
-import WarehouseTransferFormEntriesTable from './WarehouseTransferFormEntriesTable';
+import { WarehouseTransferFormEntriesTable } from './WarehouseTransferFormEntriesTable';
 import {
   entriesFieldShouldUpdate,
   defaultWarehouseTransferEntry,
-  useWatchItemsCostSetCostEntries
+  useWatchItemsCostSetCostEntries,
 } from './utils';
 
 /**
  * Warehouse transafer editor field.
  */
-export default function WarehouseTransferEditorField() {
+export function WarehouseTransferEditorField() {
   const { items } = useWarehouseTransferFormContext();
 
   // Watches inventory items cost and sets cost to form entries.

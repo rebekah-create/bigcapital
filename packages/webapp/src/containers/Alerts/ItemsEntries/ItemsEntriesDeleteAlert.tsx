@@ -11,13 +11,13 @@ import { compose, saveInvoke } from '@/utils';
 /**
  * Items entries table clear all lines alert.
  */
-function ItemsEntriesDeleteAlert({
+function ItemsEntriesDeleteAlertInner({
   name,
   onConfirm,
 
   // #withAlertStoreConnect
   isOpen,
-  payload: {  },
+  payload: {},
 
   // #withAlertActions
   closeAlert,
@@ -30,7 +30,7 @@ function ItemsEntriesDeleteAlert({
   // Handle confirm the alert.
   const handleConfirm = (event) => {
     closeAlert(name);
-    saveInvoke(onConfirm, event)
+    saveInvoke(onConfirm, event);
   };
 
   return (
@@ -44,13 +44,14 @@ function ItemsEntriesDeleteAlert({
       loading={false}
     >
       <p>
-        Clearing the table lines will delete all quantities and rate were applied to the items, Is this okay?
+        Clearing the table lines will delete all quantities and rate were
+        applied to the items, Is this okay?
       </p>
     </Alert>
   );
 }
 
-export default compose(
+export const ItemsEntriesDeleteAlert = compose(
   withAlertStoreConnect(),
   withAlertActions,
-)(ItemsEntriesDeleteAlert);
+)(ItemsEntriesDeleteAlertInner);

@@ -13,7 +13,6 @@ import {
   FieldRequiredHint,
   Col,
   Row,
-  FormattedMessage as T,
   FAccountsSuggestField,
   InputPrependText,
   MoneyInputGroup,
@@ -38,7 +37,7 @@ import { compose } from '@/utils';
 /**
  * Quick payment made form fields.
  */
-function QuickPaymentMadeFormFields({
+function QuickPaymentMadeFormFieldsInner({
   // #withCurrentOrganization
   organization: { base_currency },
 }) {
@@ -57,7 +56,7 @@ function QuickPaymentMadeFormFields({
       <FeatureCan feature={Features.Branches}>
         <Row>
           <Col xs={5}>
-            <FFormGroup label={<T id={'branch'} />} name={'branch_id'}>
+            <FFormGroup label={intl.get('branch')} name={'branch_id'}>
               <BranchSelect
                 name={'branch_id'}
                 branches={branches}
@@ -72,21 +71,21 @@ function QuickPaymentMadeFormFields({
       <Row>
         {/* ------------- Vendor name ------------- */}
         <Col xs={5}>
-          <FFormGroup name={'vendor_id'} label={<T id={'vendor_name'} />}>
+          <FFormGroup name={'vendor_id'} label={intl.get('vendor_name')}>
             <FInputGroup name={'vendor_id'} minimal={true} disabled={true} />
           </FFormGroup>
         </Col>
 
         {/* ------------ Payment number. ------------ */}
         <Col xs={5}>
-          <FFormGroup name={'payment_number'} label={<T id={'payment_no'} />}>
+          <FFormGroup name={'payment_number'} label={intl.get('payment_no')}>
             <FInputGroup name={'payment_number'} minimal={true} />
           </FFormGroup>
         </Col>
       </Row>
 
       {/*------------ Amount Received -----------*/}
-      <FFormGroup name={'amount'} label={<T id={'amount_received'} />}>
+      <FFormGroup name={'amount'} label={intl.get('amount_received')}>
         <ControlGroup>
           <InputPrependText text={values.currency_code} />
           <FMoneyInputGroup
@@ -114,7 +113,7 @@ function QuickPaymentMadeFormFields({
           {/* ------------- Payment date ------------- */}
           <FFormGroup
             name={'payment_date'}
-            label={<T id={'payment_date'} />}
+            label={intl.get('payment_date')}
             labelInfo={<FieldRequiredHint />}
             className={classNames('form-group--select-list', CLASSES.FILL)}
           >
@@ -133,7 +132,7 @@ function QuickPaymentMadeFormFields({
           {/* ------------ payment account ------------ */}
           <FFormGroup
             name={'payment_account_id'}
-            label={<T id={'payment_account'} />}
+            label={intl.get('payment_account')}
           >
             <FAccountsSuggestField
               name={'payment_account_id'}
@@ -152,26 +151,28 @@ function QuickPaymentMadeFormFields({
       </Row>
 
       {/* ------------ Reference No. ------------ */}
-      <FFormGroup name={'reference'} label={<T id={'reference'} />}>
+      <FFormGroup name={'reference'} label={intl.get('reference')}>
         <FInputGroup name={'reference'} minimal={true} />
       </FFormGroup>
 
       {/* --------- Statement --------- */}
-      <FFormGroup name={'statement'} label={<T id={'statement'} />}>
+      <FFormGroup name={'statement'} label={intl.get('statement')}>
         <FTextArea name={'statement'} growVertically={true} fill={true} />
       </FFormGroup>
     </div>
   );
 }
 
-export default compose(withCurrentOrganization())(QuickPaymentMadeFormFields);
+export const QuickPaymentMadeFormFields = compose(withCurrentOrganization())(
+  QuickPaymentMadeFormFieldsInner,
+);
 
 export const BranchRowDivider = styled.div`
   height: 1px;
   background: #ebf1f6;
   margin-bottom: 15px;
 
-  .bp4-dark &{
+  .bp4-dark & {
     background: rgba(255, 255, 255, 0.1);
   }
 `;

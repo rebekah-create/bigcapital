@@ -48,7 +48,7 @@ import { compose } from '@/utils';
 /**
  * Accounts actions bar.
  */
-function AccountsActionsBar({
+function AccountsActionsBarInner({
   // #withDialogActions
   openDialog,
 
@@ -80,10 +80,8 @@ function AccountsActionsBar({
   const { refresh } = useRefreshAccounts();
 
   // Bulk delete accounts dialog.
-  const {
-    openBulkDeleteDialog,
-    isValidatingBulkDeleteAccounts,
-  } = useBulkDeleteAccountsDialog();
+  const { openBulkDeleteDialog, isValidatingBulkDeleteAccounts } =
+    useBulkDeleteAccountsDialog();
 
   // Handle bulk accounts delete.
   const handleBulkDelete = () => {
@@ -241,7 +239,7 @@ function AccountsActionsBar({
   );
 }
 
-export default compose(
+export const AccountsActionsBar = compose(
   withDialogActions,
   withAlertActions,
   withSettingsActions,
@@ -254,4 +252,4 @@ export default compose(
     accountsTableSize: accountsSettings.tableSize,
   })),
   withAccountsTableActions,
-)(AccountsActionsBar);
+)(AccountsActionsBarInner);

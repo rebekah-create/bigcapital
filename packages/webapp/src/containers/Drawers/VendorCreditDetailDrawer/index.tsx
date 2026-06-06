@@ -6,7 +6,9 @@ import { withDrawers } from '@/containers/Drawer/withDrawers';
 import { compose } from '@/utils';
 
 const VendorCreditDetailDrawerContent = React.lazy(() =>
-  import('./VendorCreditDetailDrawerContent'),
+  import('./VendorCreditDetailDrawerContent').then((m) => ({
+    default: m.VendorCreditDetailDrawerContent,
+  })),
 );
 
 /**
@@ -32,4 +34,4 @@ function VendorCreditDetailDrawer({
   );
 }
 
-export default compose(withDrawers())(VendorCreditDetailDrawer);
+export const index = compose(withDrawers())(VendorCreditDetailDrawer);

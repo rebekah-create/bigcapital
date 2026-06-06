@@ -26,7 +26,7 @@ import { DialogsName } from '@/constants/dialogs';
 import {
   useActivateTaxRate,
   useInactivateTaxRate,
-} from '@/hooks/query/taxRates';
+} from '@/hooks/query/tax-rates';
 
 /**
  * Invoices datatable.
@@ -137,7 +137,7 @@ function TaxRatesDataTable({
   );
 }
 
-export default compose(
+export const TaxRatesLandingTable = compose(
   withDashboardActions,
   withAlertActions,
   withDrawerActions,

@@ -5,7 +5,11 @@ import { withDrawers } from '@/containers/Drawer/withDrawers';
 
 import { compose } from '@/utils';
 
-const ExpenseDrawerContent = lazy(() => import('./ExpenseDrawerContent'));
+const ExpenseDrawerContent = lazy(() =>
+  import('./ExpenseDrawerContent').then((m) => ({
+    default: m.ExpenseDrawerContent,
+  })),
+);
 
 /**
  * Expense drawer.
@@ -31,4 +35,4 @@ function ExpenseDrawer({
   );
 }
 
-export default compose(withDrawers())(ExpenseDrawer);
+export const index = compose(withDrawers())(ExpenseDrawer);

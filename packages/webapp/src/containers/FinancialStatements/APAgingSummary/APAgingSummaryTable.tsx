@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from 'react';
 import intl from 'react-intl-universal';
 import styled from 'styled-components';
@@ -11,21 +10,18 @@ import { useAPAgingSummaryColumns } from './components';
 
 import { tableRowTypesToClassnames } from '@/utils';
 
-/**
- * AP aging summary table sheet.
- */
-export default function APAgingSummaryTable({
-  //#ownProps
-  organizationName,
-}) {
-  // AP aging summary report content.
-  const {
-    APAgingSummary: { table, query, meta },
-    isAPAgingLoading,
-  } = useAPAgingSummaryContext();
+interface APAgingSummaryTableProps {
+  organizationName: string;
+}
 
-  // AP aging summary columns.
+export function APAgingSummaryTable({
+  organizationName,
+}: APAgingSummaryTableProps) {
+  const { APAgingSummary, isAPAgingLoading } = useAPAgingSummaryContext();
+
   const columns = useAPAgingSummaryColumns();
+  const table = (APAgingSummary as any)?.table;
+  const meta = (APAgingSummary as any)?.meta;
 
   return (
     <FinancialSheet
@@ -36,7 +32,7 @@ export default function APAgingSummaryTable({
     >
       <APAgingSummaryDataTable
         columns={columns}
-        data={table.rows}
+        data={table?.rows ?? []}
         rowClassNames={tableRowTypesToClassnames}
         noInitialFetch={true}
         sticky={true}

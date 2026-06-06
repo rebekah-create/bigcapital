@@ -13,9 +13,9 @@ import { DashboardInsider } from '@/components';
 /**
  * Invoice form page.
  */
-export default function InvoiceFormPage() {
+export function InvoiceFormPage() {
   const { id } = useParams();
-  const invoiceId = parseInt(id, 10);
+  const invoiceId = id ? parseInt(id, 10) : undefined;
 
   return (
     <InvoiceFormProvider invoiceId={invoiceId}>

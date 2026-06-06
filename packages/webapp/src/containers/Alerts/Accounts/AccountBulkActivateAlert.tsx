@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import intl from 'react-intl-universal';
 import { Intent, Alert } from '@blueprintjs/core';
-import { useQueryClient } from 'react-query';
+import { useQueryClient } from '@tanstack/react-query';
 import { FormattedMessage as T, AppToaster } from '@/components';
 
 import { withAlertStoreConnect } from '@/containers/Alert/withAlertStoreConnect';
@@ -10,7 +10,7 @@ import { withAlertActions } from '@/containers/Alert/withAlertActions';
 
 import { compose } from '@/utils';
 
-function AccountBulkActivateAlert({
+function AccountBulkActivateAlertInner({
   name,
   isOpen,
   payload: { accountsIds },
@@ -39,7 +39,7 @@ function AccountBulkActivateAlert({
           message: intl.get('the_accounts_has_been_successfully_activated'),
           intent: Intent.SUCCESS,
         });
-        queryClient.invalidateQueries('accounts-table');
+        queryClient.invalidateQueries({ queryKey: ['accounts-table'] });
       })
       .catch((errors) => {})
       .finally(() => {
@@ -65,7 +65,7 @@ function AccountBulkActivateAlert({
   );
 }
 
-export default compose(
+export const AccountBulkActivateAlert = compose(
   withAlertStoreConnect(),
   withAlertActions,
-)(AccountBulkActivateAlert);
+)(AccountBulkActivateAlertInner);

@@ -4,8 +4,10 @@ import * as R from 'ramda';
 import { Drawer, DrawerSuspense } from '@/components';
 import { withDrawers } from '@/containers/Drawer/withDrawers';
 
-const PaymentReceivedCustomize = React.lazy(
-  () => import('./PaymentReceivedCustomize'),
+const PaymentReceivedCustomize = React.lazy(() =>
+  import('./PaymentReceivedCustomize').then((m) => ({
+    default: m.PaymentReceivedCustomize,
+  })),
 );
 
 /**
@@ -16,7 +18,7 @@ function PaymentReceivedCustomizeDrawerRoot({
   name,
   // #withDrawer
   isOpen,
-  payload
+  payload,
 }) {
   return (
     <Drawer isOpen={isOpen} name={name} size={'100%'} payload={payload}>

@@ -2,7 +2,7 @@
 import React, { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import InvoicesEmptyStatus from './InvoicesEmptyStatus';
+import { EstimatesEmptyStatus as InvoicesEmptyStatus } from './InvoicesEmptyStatus';
 
 import { TABLES } from '@/constants/tables';
 import {
@@ -31,7 +31,7 @@ import { DialogsName } from '@/constants/dialogs';
 /**
  * Invoices datatable.
  */
-function InvoicesDataTable({
+function InvoicesDataTableInner({
   // #withInvoicesActions
   setInvoicesTableState,
   setInvoicesSelectedRows,
@@ -144,7 +144,7 @@ function InvoicesDataTable({
     <DashboardContentTable>
       <DataTable
         columns={columns}
-        data={invoices}
+        data={invoices ?? []}
         loading={isInvoicesLoading}
         headerLoading={isInvoicesLoading}
         progressBarLoading={isInvoicesFetching}
@@ -155,9 +155,9 @@ function InvoicesDataTable({
         noInitialFetch={true}
         sticky={true}
         pagination={true}
-        initialPageSize={invoicesTableState.pageSize}
+        initialPageSize={invoicesTableState?.pageSize ?? 10}
         manualPagination={true}
-        pagesCount={pagination.pagesCount}
+        rowsCount={pagination?.total ?? 0}
         autoResetSortBy={false}
         autoResetPage={false}
         autoResetSelectedRows={false}
@@ -176,14 +176,14 @@ function InvoicesDataTable({
           onViewDetails: handleViewDetailInvoice,
           onPrint: handlePrintInvoice,
           onConvert: handleConvertToCreitNote,
-          onSendMail: handleSendMailInvoice
+          onSendMail: handleSendMailInvoice,
         }}
       />
     </DashboardContentTable>
   );
 }
 
-export default compose(
+export const InvoicesDataTable = compose(
   withDashboardActions,
   withInvoiceActions,
   withAlertActions,
@@ -193,4 +193,4 @@ export default compose(
   withSettings(({ invoiceSettings }) => ({
     invoicesTableSize: invoiceSettings?.tableSize,
   })),
-)(InvoicesDataTable);
+)(InvoicesDataTableInner);

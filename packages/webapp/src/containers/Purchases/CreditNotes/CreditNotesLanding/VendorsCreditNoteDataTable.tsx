@@ -2,7 +2,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
-import VendorsCreditNoteEmptyStatus from './VendorsCreditNoteEmptyStatus';
+import { VendorsCreditNoteEmptyStatus } from './VendorsCreditNoteEmptyStatus';
 import {
   DataTable,
   DashboardContentTable,
@@ -29,7 +29,7 @@ import { DRAWERS } from '@/constants/drawers';
 /**
  * Vendors Credit note data table.
  */
-function VendorsCreditNoteDataTable({
+function VendorsCreditNoteDataTableInner({
   // #withVendorsCreditNotesActions
   setVendorsCreditNoteTableState,
   setVendorsCreditNoteSelectedRows,
@@ -129,7 +129,7 @@ function VendorsCreditNoteDataTable({
     <DashboardContentTable>
       <DataTable
         columns={columns}
-        data={vendorCredits}
+        data={vendorCredits ?? []}
         loading={isVendorCreditsLoading}
         headerLoading={isVendorCreditsLoading}
         progressBarLoading={isVendorCreditsFetching}
@@ -139,8 +139,8 @@ function VendorsCreditNoteDataTable({
         noInitialFetch={true}
         sticky={true}
         pagination={true}
-        initialPageSize={vendorsCreditNoteTableState.pageSize}
-        pagesCount={pagination.pagesCount}
+        initialPageSize={vendorsCreditNoteTableState?.pageSize ?? 10}
+        rowsCount={pagination?.total ?? 0}
         TableLoadingRenderer={TableSkeletonRows}
         TableHeaderSkeletonRenderer={TableSkeletonHeader}
         ContextMenu={ActionsMenu}
@@ -162,7 +162,7 @@ function VendorsCreditNoteDataTable({
   );
 }
 
-export default compose(
+export const VendorsCreditNoteDataTable = compose(
   withDashboardActions,
   withVendorsCreditNotesActions,
   withAlertActions,
@@ -174,4 +174,4 @@ export default compose(
   withVendorsCreditNotes(({ vendorsCreditNoteTableState }) => ({
     vendorsCreditNoteTableState,
   })),
-)(VendorsCreditNoteDataTable);
+)(VendorsCreditNoteDataTableInner);

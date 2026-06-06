@@ -14,8 +14,9 @@ import { compose } from '@/utils';
 import { useInviteUserFormContext } from './InviteUserFormProvider';
 
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
+import intl from 'react-intl-universal';
 
-function InviteUserFormContent({
+function InviteUserFormContentInner({
   // #withDialogActions
   closeDialog,
 }) {
@@ -35,7 +36,7 @@ function InviteUserFormContent({
         {/* ----------- Email ----------- */}
         <FFormGroup
           name={'email'}
-          label={<T id={'invite_user.label.email'} />}
+          label={intl.get('invite_user.label.email')}
           labelInfo={<FieldRequiredHint />}
         >
           <FInputGroup name={'email'} />
@@ -43,7 +44,7 @@ function InviteUserFormContent({
         {/* ----------- Role name ----------- */}
         <FFormGroup
           name={'role_id'}
-          label={<T id={'invite_user.label.role_name'} />}
+          label={intl.get('invite_user.label.role_name')}
           labelInfo={<FieldRequiredHint />}
         >
           <FSelect
@@ -77,4 +78,6 @@ function InviteUserFormContent({
   );
 }
 
-export default compose(withDialogActions)(InviteUserFormContent);
+export const InviteUserFormContent = compose(withDialogActions)(
+  InviteUserFormContentInner,
+);

@@ -2,7 +2,6 @@
 import React, { useMemo } from 'react';
 import classNames from 'classnames';
 import {
-  FormattedMessage as T,
   FAccountsSuggestField,
   FieldRequiredHint,
   Col,
@@ -13,13 +12,15 @@ import {
 import { CLASSES, getAddMoneyInOptions } from '@/constants';
 
 import { useMoneyInDailogContext } from './MoneyInDialogProvider';
+import intl from 'react-intl-universal';
 
 /**
  * Transaction type fields.
  */
-export default function TransactionTypeFields() {
+export function TransactionTypeFields() {
   // Money in dialog context.
-  const { cashflowAccounts, setAccountId, accountId } = useMoneyInDailogContext();
+  const { cashflowAccounts, setAccountId, accountId } =
+    useMoneyInDailogContext();
 
   // Retrieves the add money in button options.
   const addMoneyInOptions = useMemo(() => getAddMoneyInOptions(), []);
@@ -31,7 +32,7 @@ export default function TransactionTypeFields() {
           {/*------------ Transaction type -----------*/}
           <FFormGroup
             name={'transaction_type'}
-            label={<T id={'transaction_type'} />}
+            label={intl.get('transaction_type')}
             labelInfo={<FieldRequiredHint />}
           >
             <FSelect
@@ -48,7 +49,7 @@ export default function TransactionTypeFields() {
           {/*------------ Current account -----------*/}
           <FFormGroup
             name={'cashflow_account_id'}
-            label={<T id={'cash_flow_transaction.label_current_account'} />}
+            label={intl.get('cash_flow_transaction.label_current_account')}
             labelInfo={<FieldRequiredHint />}
             fill
           >

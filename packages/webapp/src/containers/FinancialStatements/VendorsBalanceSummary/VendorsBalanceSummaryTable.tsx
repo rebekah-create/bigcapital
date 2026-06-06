@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from 'react';
 import intl from 'react-intl-universal';
 import styled from 'styled-components';
@@ -9,16 +8,21 @@ import { tableRowTypesToClassnames } from '@/utils';
 import { useVendorsBalanceColumns } from './components';
 import { useVendorsBalanceSummaryContext } from './VendorsBalanceSummaryProvider';
 
+interface VendorsBalanceSummaryTableProps {
+  organizationName: any;
+}
+
 /**
  * Vendors balance summary table.
  */
-export default function VendorsBalanceSummaryTable({
+export function VendorsBalanceSummaryTable({
   //#ownProps
   organizationName,
-}) {
-  const {
-    VendorBalanceSummary: { table, query, meta },
-  } = useVendorsBalanceSummaryContext();
+}: VendorsBalanceSummaryTableProps) {
+  const { VendorBalanceSummary } = useVendorsBalanceSummaryContext();
+
+  const table = (VendorBalanceSummary as any)?.table;
+  const meta = (VendorBalanceSummary as any)?.meta;
 
   // vendors balance summary columns.
   const columns = useVendorsBalanceColumns();
@@ -31,7 +35,7 @@ export default function VendorsBalanceSummaryTable({
     >
       <VendorBalanceDataTable
         columns={columns}
-        data={table.rows}
+        data={table?.rows}
         rowClassNames={tableRowTypesToClassnames}
         noInitialFetch={true}
         sticky={true}

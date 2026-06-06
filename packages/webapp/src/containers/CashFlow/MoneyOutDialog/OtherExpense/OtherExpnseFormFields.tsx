@@ -3,7 +3,6 @@ import React from 'react';
 import { FormGroup, Position, ControlGroup } from '@blueprintjs/core';
 import classNames from 'classnames';
 import {
-  FormattedMessage as T,
   FAccountsSuggestField,
   InputPrependText,
   FieldRequiredHint,
@@ -25,11 +24,12 @@ import { useSetPrimaryBranchToForm, BranchRowDivider } from '../utils';
 import { MoneyInOutTransactionNoField } from '../../_components';
 import { MoneyOutExchangeRateField } from '../MoneyOutExchangeRateField';
 import { useMoneyOutFieldsContext } from '../MoneyOutFieldsProvider';
+import intl from 'react-intl-universal';
 
 /**
  * Other expense form fields.
  */
-export default function OtherExpnseFormFields() {
+export function OtherExpnseFormFields() {
   // Money in dialog context.
   const { accounts, branches } = useMoneyOutDialogContext();
   const { account } = useMoneyOutFieldsContext();
@@ -42,7 +42,7 @@ export default function OtherExpnseFormFields() {
       <FeatureCan feature={Features.Branches}>
         <Row>
           <Col xs={5}>
-            <FFormGroup name={'branch_id'} label={<T id={'branch'} />}>
+            <FFormGroup name={'branch_id'} label={intl.get('branch')}>
               <BranchSelect
                 name={'branch_id'}
                 branches={branches}
@@ -59,7 +59,7 @@ export default function OtherExpnseFormFields() {
           {/*------------ Date -----------*/}
           <FFormGroup
             name={'date'}
-            label={<T id={'date'} />}
+            label={intl.get('date')}
             labelInfo={<FieldRequiredHint />}
             fill
             fastField
@@ -87,7 +87,7 @@ export default function OtherExpnseFormFields() {
         <Col xs={10}>
           <FFormGroup
             name={'amount'}
-            label={<T id={'amount'} />}
+            label={intl.get('amount')}
             labelInfo={<FieldRequiredHint />}
           >
             <ControlGroup>
@@ -106,7 +106,7 @@ export default function OtherExpnseFormFields() {
           {/*------------ other expense account -----------*/}
           <FFormGroup
             name={'credit_account_id'}
-            label={<T id={'cash_flow_transaction.label_expense_account'} />}
+            label={intl.get('cash_flow_transaction.label_expense_account')}
             labelInfo={<FieldRequiredHint />}
           >
             <FAccountsSuggestField
@@ -119,14 +119,14 @@ export default function OtherExpnseFormFields() {
 
         <Col xs={5}>
           {/*------------ Reference -----------*/}
-          <FFormGroup name={'reference_no'} label={<T id={'reference_no'} />}>
+          <FFormGroup name={'reference_no'} label={intl.get('reference_no')}>
             <FInputGroup name={'reference_no'} />
           </FFormGroup>
         </Col>
       </Row>
 
       {/*------------ description -----------*/}
-      <FFormGroup name={'description'} label={<T id={'description'} />}>
+      <FFormGroup name={'description'} label={intl.get('description')}>
         <FTextArea
           name={'description'}
           growVertically={true}

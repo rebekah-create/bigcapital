@@ -11,7 +11,7 @@ import {
 } from '@/components';
 import { useMemorizedColumnsWidths } from '@/hooks';
 
-import CreditNoteEmptyStatus from './CreditNotesEmptyStatus';
+import { CreditNotesEmptyStatus as CreditNoteEmptyStatus } from './CreditNotesEmptyStatus';
 
 import { withDashboardActions } from '@/containers/Dashboard/withDashboardActions';
 import { withCreditNotesActions } from './withCreditNotesActions';
@@ -30,7 +30,7 @@ import { DRAWERS } from '@/constants/drawers';
 /**
  * Credit note data table.
  */
-function CreditNotesDataTable({
+function CreditNotesDataTableInner({
   // #withCreditNotesActions
   setCreditNotesTableState,
   setCreditNotesSelectedRows,
@@ -48,7 +48,7 @@ function CreditNotesDataTable({
   creditNoteTableSize,
 
   // #withCreditNotes
-  creditNoteTableState
+  creditNoteTableState,
 }) {
   const history = useHistory();
 
@@ -133,7 +133,7 @@ function CreditNotesDataTable({
     <DashboardContentTable>
       <DataTable
         columns={columns}
-        data={creditNotes}
+        data={creditNotes ?? []}
         loading={isCreditNotesLoading}
         headerLoading={isCreditNotesLoading}
         progressBarLoading={isCreditNotesFetching}
@@ -145,8 +145,8 @@ function CreditNotesDataTable({
         noInitialFetch={true}
         sticky={true}
         pagination={true}
-        initialPageSize={creditNoteTableState.pageSize}
-        pagesCount={pagination.pagesCount}
+        initialPageSize={creditNoteTableState?.pageSize ?? 10}
+        rowsCount={pagination?.total ?? 0}
         TableLoadingRenderer={TableSkeletonRows}
         TableHeaderSkeletonRenderer={TableSkeletonHeader}
         ContextMenu={ActionsMenu}
@@ -167,7 +167,7 @@ function CreditNotesDataTable({
   );
 }
 
-export default compose(
+export const CreditNotesDataTable = compose(
   withDashboardActions,
   withCreditNotesActions,
   withDrawerActions,
@@ -176,5 +176,5 @@ export default compose(
   withSettings(({ creditNoteSettings }) => ({
     creditNoteTableSize: creditNoteSettings?.tableSize,
   })),
-  withCreditNotes(({ creditNoteTableState }) => ({ creditNoteTableState }))
-)(CreditNotesDataTable);
+  withCreditNotes(({ creditNoteTableState }) => ({ creditNoteTableState })),
+)(CreditNotesDataTableInner);

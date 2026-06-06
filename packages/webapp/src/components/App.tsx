@@ -2,8 +2,8 @@
 import { lazy, Suspense } from 'react';
 import { Router, Switch, Route } from 'react-router';
 import { createBrowserHistory } from 'history';
-import { QueryClientProvider, QueryClient } from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools';
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 import '@/style/App.scss';
 import 'moment/locale/ar-ly';
@@ -11,7 +11,7 @@ import 'moment/locale/es-us';
 
 import AppIntlLoader from './AppIntlLoader';
 import { EnsureAuthenticated } from '@/components/Guards/EnsureAuthenticated';
-import GlobalErrors from '@/containers/GlobalErrors/GlobalErrors';
+import { GlobalErrors } from '@/containers/GlobalErrors/GlobalErrors';
 
 import { SplashScreen, DashboardThemeProvider } from '../components';
 import { queryConfig } from '../hooks/query/base';
@@ -20,20 +20,30 @@ import { EnsureUserEmailNotVerified } from './Guards/EnsureUserEmailNotVerified'
 const DashboardPrivatePages = lazy(
   () => import('@/components/Dashboard/PrivatePages'),
 );
-const AuthenticationPage = lazy(
-  () => import('@/containers/Authentication/AuthenticationPage'),
+const AuthenticationPage = lazy(() =>
+  import('@/containers/Authentication/AuthenticationPage').then((m) => ({
+    default: m.AuthenticationPage,
+  })),
 );
-const EmailConfirmation = lazy(
-  () => import('@/containers/Authentication/EmailConfirmation'),
+const EmailConfirmation = lazy(() =>
+  import('@/containers/Authentication/EmailConfirmation').then((m) => ({
+    default: m.EmailConfirmation,
+  })),
 );
-const RegisterVerify = lazy(
-  () => import('@/containers/Authentication/RegisterVerify'),
+const RegisterVerify = lazy(() =>
+  import('@/containers/Authentication/RegisterVerify').then((m) => ({
+    default: m.RegisterVerify,
+  })),
 );
-const OneClickDemoPage = lazy(
-  () => import('@/containers/OneClickDemo/OneClickDemoPage'),
+const OneClickDemoPage = lazy(() =>
+  import('@/containers/OneClickDemo/OneClickDemoPage').then((m) => ({
+    default: m.OneClickDemoPage,
+  })),
 );
-const PaymentPortalPage = lazy(
-  () => import('@/containers/PaymentPortal/PaymentPortalPage'),
+const PaymentPortalPage = lazy(() =>
+  import('@/containers/PaymentPortal/PaymentPortalPage').then((m) => ({
+    default: m.PaymentPortalPage,
+  })),
 );
 
 /**

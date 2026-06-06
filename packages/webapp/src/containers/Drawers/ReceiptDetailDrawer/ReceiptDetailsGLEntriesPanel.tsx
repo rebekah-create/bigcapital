@@ -6,8 +6,9 @@ import { Card } from '@/components';
 import { useTransactionsByReference } from '@/hooks/query';
 import { useReceiptDetailDrawerContext } from './ReceiptDetailDrawerProvider';
 
-import JournalEntriesTable, {
+import {
   AmountDisplayedBaseCurrencyMessage,
+  JournalEntriesTable,
 } from '../../JournalEntriesTable/JournalEntriesTable';
 
 /**

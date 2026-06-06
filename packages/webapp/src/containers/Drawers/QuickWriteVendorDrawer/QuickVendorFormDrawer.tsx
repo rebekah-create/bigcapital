@@ -8,9 +8,7 @@ import {
   VendorFormProvider,
   useVendorFormContext,
 } from '@/containers/Vendors/VendorForm/VendorFormProvider';
-import {
-  VendorFormFormik,
-} from '@/containers/Vendors/VendorForm/VendorFormFormik';
+import { VendorFormFormik } from '@/containers/Vendors/VendorForm/VendorFormFormik';
 
 import { withDrawerActions } from '@/containers/Drawer/withDrawerActions';
 import { withDashboardActions } from '@/containers/Dashboard/withDashboardActions';
@@ -32,7 +30,7 @@ function DrawerVendorFormLoading({ children }) {
 /**
  * Quick vendor form of the drawer.
  */
-function QuickVendorFormDrawer({
+function QuickVendorFormDrawerInner({
   displayName,
   closeDrawer,
   vendorId,
@@ -62,18 +60,17 @@ function QuickVendorFormDrawer({
   return (
     <VendorFormProvider vendorId={vendorId}>
       <DrawerVendorFormLoading>
-          <VendorFormFormik
-            initialValues={{ first_name: displayName }}
-            onSubmitSuccess={handleSubmitSuccess}
-            onCancel={handleCancelForm}
-          />
+        <VendorFormFormik
+          initialValues={{ first_name: displayName }}
+          onSubmitSuccess={handleSubmitSuccess}
+          onCancel={handleCancelForm}
+        />
       </DrawerVendorFormLoading>
     </VendorFormProvider>
   );
 }
 
-export default R.compose(
+export const QuickVendorFormDrawer = R.compose(
   withDrawerActions,
   withDashboardActions,
-)(QuickVendorFormDrawer);
-
+)(QuickVendorFormDrawerInner);

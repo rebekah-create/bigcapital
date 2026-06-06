@@ -14,7 +14,7 @@ import { compose } from '@/utils';
 /**
  * Customer bulk delete alert.
  */
-function CustomerBulkDeleteAlert({
+function CustomerBulkDeleteAlertInner({
   name,
 
   // #withAlertStoreConnect
@@ -24,15 +24,12 @@ function CustomerBulkDeleteAlert({
   // #withAlertActions
   closeAlert,
 }) {
-  
   const [isLoading, setLoading] = useState(false);
 
   // handle cancel delete  alert.
   const handleCancelDeleteAlert = () => {
     closeAlert(name);
   };
-
-
 
   // Handle confirm customers bulk delete.
   const handleConfirmBulkDelete = useCallback(() => {
@@ -71,7 +68,7 @@ function CustomerBulkDeleteAlert({
   );
 }
 
-export default compose(
+export const CustomerBulkDeleteAlert = compose(
   withAlertStoreConnect(),
   withAlertActions,
-)(CustomerBulkDeleteAlert);
+)(CustomerBulkDeleteAlertInner);

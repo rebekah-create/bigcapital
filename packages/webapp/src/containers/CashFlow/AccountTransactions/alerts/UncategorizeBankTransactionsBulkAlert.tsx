@@ -6,13 +6,13 @@ import { AppToaster, FormattedMessage as T } from '@/components';
 import { withAlertStoreConnect } from '@/containers/Alert/withAlertStoreConnect';
 import { withAlertActions } from '@/containers/Alert/withAlertActions';
 
-import { useUncategorizeTransactionsBulkAction } from '@/hooks/query/bank-transactions';
+import { useUncategorizeTransactionsBulkAction } from '@/hooks/query/banking';
 import { compose } from '@/utils';
 
 /**
  * Uncategorize bank account transactions in build alert.
  */
-function UncategorizeBankTransactionsBulkAlert({
+function UncategorizeBankTransactionsBulkAlertInner({
   name,
 
   // #withAlertStoreConnect
@@ -68,7 +68,7 @@ function UncategorizeBankTransactionsBulkAlert({
   );
 }
 
-export default compose(
+export const UncategorizeBankTransactionsBulkAlert = compose(
   withAlertStoreConnect(),
   withAlertActions,
-)(UncategorizeBankTransactionsBulkAlert);
+)(UncategorizeBankTransactionsBulkAlertInner);

@@ -6,15 +6,11 @@ interface StorePlaidState {
   openMatchingTransactionAside: boolean;
   uncategorizedTransactionIdForMatching: number | null;
   openReconcileMatchingTransaction: { isOpen: boolean; pending: number };
-
   uncategorizedTransactionsSelected: Array<number | string>;
   excludedTransactionsSelected: Array<number | string>;
   transactionsToCategorizeSelected: Array<number | string>;
-
   enableMultipleCategorization: boolean;
-
   categorizedTransactionsSelected: Array<number | string>;
-
   uncategorizedFilter: { fromDate?: string; toDate?: string };
 }
 
@@ -207,8 +203,8 @@ export const PlaidSlice = createSlice({
 
     /**
      * Sets the uncategorized transactions filter.
-     * @param {StorePlaidState} state 
-     * @param {PayloadAction<{ filter: any }>} action 
+     * @param {StorePlaidState} state
+     * @param {PayloadAction<{ filter: any }>} action
      */
     setUncategorizedTransactionsFilter: (
       state: StorePlaidState,
@@ -219,7 +215,7 @@ export const PlaidSlice = createSlice({
 
     /**
      * Resets the uncategorized transactions filter.
-     * @param {StorePlaidState} state 
+     * @param {StorePlaidState} state
      */
     resetUncategorizedTranasctionsFilter: (state: StorePlaidState) => {
       state.uncategorizedFilter = {};

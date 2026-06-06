@@ -9,13 +9,12 @@ import { Callout, Classes, Intent } from '@blueprintjs/core';
 import '@/style/pages/NotifyConactViaSMS/NotifyConactViaSMSDialog.scss';
 
 import { CreateNotifyViaSMSFormSchema } from './NotifyViaSMSForm.schema';
-import NotifyViaSMSFormFields from './NotifyViaSMSFormFields';
-import NotifyViaSMSFormFloatingActions from './NotifyViaSMSFormFloatingActions';
+import { NotifyViaSMSFormFields } from './NotifyViaSMSFormFields';
+import { NotifyViaSMSFormFloatingActions } from './NotifyViaSMSFormFloatingActions';
 import { FormObserver, SMSMessagePreview } from '@/components';
 
 import { transformToForm, safeInvoke } from '@/utils';
 import { getSMSUnits } from './utils';
-
 
 const defaultInitialValues = {
   notification_key: '',
@@ -53,7 +52,7 @@ function SMSMessagePreviewSection() {
 /**
  * Notify Via SMS Form.
  */
-function NotifyViaSMSForm({
+export function NotifyViaSMSForm({
   initialValues: initialValuesComponent,
   notificationTypes,
   onSubmit,
@@ -131,9 +130,6 @@ function NotifyViaSMSAlerts({ calloutCodes }) {
     ),
   ];
 }
-
-export default NotifyViaSMSForm;
-
 const NotifyContent = styled.div`
   display: flex;
 `;

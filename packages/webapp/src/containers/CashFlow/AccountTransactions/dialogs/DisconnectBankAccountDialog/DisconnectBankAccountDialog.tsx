@@ -4,8 +4,10 @@ import { Dialog, DialogSuspense } from '@/components';
 import withDialogRedux from '@/components/DialogReduxConnect';
 import { compose } from '@/utils';
 
-const DisconnectBankAccountDialogContent = React.lazy(
-  () => import('./DisconnectBankAccountDialogContent'),
+const DisconnectBankAccountDialogContent = React.lazy(() =>
+  import('./DisconnectBankAccountDialogContent').then((m) => ({
+    default: m.DisconnectBankAccountDialogContent,
+  })),
 );
 
 /**

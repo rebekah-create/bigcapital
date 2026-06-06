@@ -7,11 +7,11 @@ import { Formik, Form } from 'formik';
 import { useHistory } from 'react-router-dom';
 import { css } from '@emotion/css';
 
-import ExpenseFormBody from './ExpenseFormBody';
-import ExpenseFormHeader from './ExpenseFormHeader';
-import ExpenseFloatingFooter from './ExpenseFloatingActions';
-import ExpenseFormFooter from './ExpenseFormFooter';
-import ExpenseFormTopBar from './ExpenseFormTopBar';
+import { ExpenseFormBody } from './ExpenseFormBody';
+import { ExpenseFormHeader } from './ExpenseFormHeader';
+import { ExpenseFloatingFooter } from './ExpenseFloatingActions';
+import { ExpenseFormFooter } from './ExpenseFormFooter';
+import { ExpenseFormTopBar } from './ExpenseFormTopBar';
 
 import { useExpenseFormContext } from './ExpenseFormPageProvider';
 
@@ -36,7 +36,7 @@ import { compose } from '@/utils';
 /**
  * Expense form.
  */
-function ExpenseForm({
+function ExpenseFormInner({
   // #withSettings
   preferredPaymentAccount,
   // #withCurrentOrganization
@@ -61,13 +61,13 @@ function ExpenseForm({
     () => ({
       ...(!isEmpty(expense)
         ? {
-          ...transformToEditForm(expense, defaultExpense),
-        }
+            ...transformToEditForm(expense, defaultExpense),
+          }
         : {
-          ...defaultExpense,
-          currency_code: base_currency,
-          payment_account_id: defaultTo(preferredPaymentAccount, ''),
-        }),
+            ...defaultExpense,
+            currency_code: base_currency,
+            payment_account_id: defaultTo(preferredPaymentAccount, ''),
+          }),
     }),
     [expense, base_currency, preferredPaymentAccount],
   );
@@ -168,7 +168,7 @@ function ExpenseForm({
   );
 }
 
-export default compose(
+export const ExpenseForm = compose(
   withDashboardActions,
   withSettings(({ expenseSettings }) => ({
     preferredPaymentAccount: parseInt(
@@ -177,4 +177,4 @@ export default compose(
     ),
   })),
   withCurrentOrganization(),
-)(ExpenseForm);
+)(ExpenseFormInner);

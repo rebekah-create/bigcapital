@@ -2,7 +2,7 @@
 import React, { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import EstimatesEmptyStatus from './EstimatesEmptyStatus';
+import { EstimatesEmptyStatus } from './EstimatesEmptyStatus';
 
 import { withEstimatesActions } from './withEstimatesActions';
 import { withAlertActions } from '@/containers/Alert/withAlertActions';
@@ -28,7 +28,7 @@ import { DialogsName } from '@/constants/dialogs';
 /**
  * Estimates datatable.
  */
-function EstimatesDataTable({
+function EstimatesDataTableInner({
   // #withEstimatesActions
   setEstimatesTableState,
   setEstimatesSelectedRows,
@@ -46,7 +46,7 @@ function EstimatesDataTable({
   estimatesTableSize,
 
   // #withEstimates
-  estimatesTableState
+  estimatesTableState,
 }) {
   const history = useHistory();
 
@@ -109,7 +109,7 @@ function EstimatesDataTable({
   // Handle mail send estimate.
   const handleMailSendEstimate = ({ id }) => {
     openDrawer(DRAWERS.ESTIMATE_SEND_MAIL, { estimateId: id });
-  }
+  };
 
   // Local storage memorizing columns widths.
   const [initialColumnsWidths, , handleColumnResizing] =
@@ -145,7 +145,7 @@ function EstimatesDataTable({
     <DashboardContentTable>
       <DataTable
         columns={columns}
-        data={estimates}
+        data={estimates ?? []}
         loading={isEstimatesLoading}
         headerLoading={isEstimatesLoading}
         progressBarLoading={isEstimatesFetching}
@@ -157,9 +157,9 @@ function EstimatesDataTable({
         selectionColumn={true}
         sticky={true}
         pagination={true}
-        initialPageSize={estimatesTableState.pageSize}
+        initialPageSize={estimatesTableState?.pageSize ?? 10}
         manualPagination={true}
-        pagesCount={pagination.pagesCount}
+        rowsCount={pagination?.total ?? 0}
         TableLoadingRenderer={TableSkeletonRows}
         TableHeaderSkeletonRenderer={TableSkeletonHeader}
         ContextMenu={ActionsMenu}
@@ -183,7 +183,7 @@ function EstimatesDataTable({
   );
 }
 
-export default compose(
+export const EstimatesDataTable = compose(
   withEstimatesActions,
   withAlertActions,
   withDrawerActions,
@@ -191,5 +191,5 @@ export default compose(
   withSettings(({ estimatesSettings }) => ({
     estimatesTableSize: estimatesSettings?.tableSize,
   })),
-  withEstimates(({ estimatesTableState }) => ({ estimatesTableState }))
-)(EstimatesDataTable);
+  withEstimates(({ estimatesTableState }) => ({ estimatesTableState })),
+)(EstimatesDataTableInner);

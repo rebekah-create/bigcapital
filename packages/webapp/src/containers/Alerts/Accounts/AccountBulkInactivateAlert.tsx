@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { FormattedMessage as T } from '@/components';
 import intl from 'react-intl-universal';
 import { Intent, Alert } from '@blueprintjs/core';
-import { useQueryClient } from 'react-query';
+import { useQueryClient } from '@tanstack/react-query';
 import { AppToaster } from '@/components';
 
 // import { withAccountsActions } from '@/containers/Accounts/withAccountsTableActions';
@@ -12,7 +12,7 @@ import { withAlertActions } from '@/containers/Alert/withAlertActions';
 
 import { compose } from '@/utils';
 
-function AccountBulkInactivateAlert({
+function AccountBulkInactivateAlertInner({
   name,
   isOpen,
   payload: { accountsIds },
@@ -39,7 +39,7 @@ function AccountBulkInactivateAlert({
           message: intl.get('the_accounts_have_been_successfully_inactivated'),
           intent: Intent.SUCCESS,
         });
-        queryClient.invalidateQueries('accounts-table');
+        queryClient.invalidateQueries({ queryKey: ['accounts-table'] });
       })
       .catch((errors) => {})
       .finally(() => {
@@ -65,8 +65,8 @@ function AccountBulkInactivateAlert({
   );
 }
 
-export default compose(
+export const AccountBulkInactivateAlert = compose(
   withAlertStoreConnect(),
   withAlertActions,
   // withAccountsActions,
-)(AccountBulkInactivateAlert);
+)(AccountBulkInactivateAlertInner);

@@ -6,8 +6,9 @@ import { useCreditNoteDetailDrawerContext } from '../CreditNoteDetailDrawerProvi
 import { useTransactionsByReference } from '@/hooks/query';
 import { useJournalEntriesTransactionsColumns } from './components';
 
-import JournalEntriesTable, {
+import {
   AmountDisplayedBaseCurrencyMessage,
+  JournalEntriesTable,
 } from '@/containers/JournalEntriesTable/JournalEntriesTable';
 
 /**

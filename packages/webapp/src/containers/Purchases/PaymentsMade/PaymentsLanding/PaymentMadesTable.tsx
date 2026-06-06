@@ -11,7 +11,7 @@ import {
   TableSkeletonHeader,
 } from '@/components';
 
-import PaymentMadesEmptyStatus from './PaymentMadesEmptyStatus';
+import { PaymentMadesEmptyStatus } from './PaymentMadesEmptyStatus';
 
 import { withPaymentMade } from './withPaymentMade';
 import { withPaymentMadeActions } from './withPaymentMadeActions';
@@ -28,7 +28,7 @@ import { DRAWERS } from '@/constants/drawers';
 /**
  * Payment made datatable transactions.
  */
-function PaymentMadesTable({
+function PaymentMadesTableInner({
   // #withPaymentMadeActions
   setPaymentMadesTableState,
 
@@ -102,7 +102,7 @@ function PaymentMadesTable({
     <DashboardContentTable>
       <DataTable
         columns={columns}
-        data={paymentMades}
+        data={paymentMades ?? []}
         onFetchData={handleDataTableFetchData}
         loading={isPaymentsLoading}
         headerLoading={isPaymentsLoading}
@@ -112,8 +112,8 @@ function PaymentMadesTable({
         noInitialFetch={true}
         sticky={true}
         pagination={true}
-        initialPageSize={paymentMadesTableState.pageSize}
-        pagesCount={pagination.pagesCount}
+        initialPageSize={paymentMadesTableState?.pageSize ?? 10}
+        rowsCount={pagination?.total ?? 0}
         autoResetSortBy={false}
         autoResetPage={false}
         TableLoadingRenderer={TableSkeletonRows}
@@ -133,7 +133,7 @@ function PaymentMadesTable({
   );
 }
 
-export default compose(
+export const PaymentMadesTable = compose(
   withPaymentMadeActions,
   withPaymentMade(({ paymentMadesTableState }) => ({ paymentMadesTableState })),
   withAlertActions,
@@ -142,4 +142,4 @@ export default compose(
   withSettings(({ billPaymentSettings }) => ({
     paymentMadesTableSize: billPaymentSettings?.tableSize,
   })),
-)(PaymentMadesTable);
+)(PaymentMadesTableInner);

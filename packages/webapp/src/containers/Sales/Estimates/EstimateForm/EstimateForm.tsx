@@ -11,12 +11,12 @@ import {
   EditEstimateFormSchema,
 } from './EstimateForm.schema';
 
-import EstimateFormHeader from './EstimateFormHeader';
-import EstimateItemsEntriesField from './EstimateItemsEntriesField';
-import EstimateFloatingActions from './EstimateFloatingActions';
-import EstimateFormFooter from './EstimateFormFooter';
-import EstimateFormDialogs from './EstimateFormDialogs';
-import EstimtaeFormTopBar from './EstimtaeFormTopBar';
+import { EstimateFormHeader } from './EstimateFormHeader';
+import { EstimateFormItemsEntriesField as EstimateItemsEntriesField } from './EstimateItemsEntriesField';
+import { EstimateFloatingActions } from './EstimateFloatingActions';
+import { EstiamteFormFooter as EstimateFormFooter } from './EstimateFormFooter';
+import { EstimateFormDialogs } from './EstimateFormDialogs';
+import { EstimtaeFormTopBar } from './EstimtaeFormTopBar';
 import {
   EstimateIncrementSyncSettingsToForm,
   EstimateSyncAutoExRateToForm,
@@ -40,7 +40,7 @@ import { PageForm } from '@/components/PageForm';
 /**
  * Estimate form.
  */
-function EstimateForm({
+function EstimateFormInner({
   // #withSettings
   estimateNextNumber,
   estimateNumberPrefix,
@@ -70,18 +70,18 @@ function EstimateForm({
     ...(!isEmpty(estimate)
       ? { ...transformToEditForm(estimate) }
       : {
-        ...defaultEstimate,
-        // If the auto-increment mode is enabled, take the next estimate
-        // number from the settings.
-        ...(estimateAutoIncrementMode && {
-          estimate_number: estimateNumber,
+          ...defaultEstimate,
+          // If the auto-increment mode is enabled, take the next estimate
+          // number from the settings.
+          ...(estimateAutoIncrementMode && {
+            estimate_number: estimateNumber,
+          }),
+          entries: orderingLinesIndexes(defaultEstimate.entries),
+          currency_code: base_currency,
+          terms_conditions: defaultTo(estimateTermsConditions, ''),
+          note: defaultTo(estimateCustomerNotes, ''),
+          pdf_template_id: saleEstimateState?.defaultTemplateId,
         }),
-        entries: orderingLinesIndexes(defaultEstimate.entries),
-        currency_code: base_currency,
-        terms_conditions: defaultTo(estimateTermsConditions, ''),
-        note: defaultTo(estimateCustomerNotes, ''),
-        pdf_template_id: saleEstimateState?.defaultTemplateId,
-      }),
   };
 
   // Handles form submit.
@@ -187,7 +187,7 @@ function EstimateForm({
   );
 }
 
-export default compose(
+export const EstimateForm = compose(
   withSettings(({ estimatesSettings }) => ({
     estimateNextNumber: estimatesSettings?.nextNumber,
     estimateNumberPrefix: estimatesSettings?.numberPrefix,
@@ -196,4 +196,4 @@ export default compose(
     estimateTermsConditions: estimatesSettings?.termsConditions,
   })),
   withCurrentOrganization(),
-)(EstimateForm);
+)(EstimateFormInner);

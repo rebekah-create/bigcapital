@@ -45,7 +45,7 @@ import { useBulkDeleteCreditNotesDialog } from './hooks/use-bulk-delete-credit-n
 /**
  * Credit note table actions bar.
  */
-function CreditNotesActionsBar({
+function CreditNotesActionsBarInner({
   // #withCreditNotes
   creditNoteFilterRoles,
   creditNotesSelectedRows,
@@ -106,12 +106,10 @@ function CreditNotesActionsBar({
   // Handle the customize button click.
   const handleCustomizeBtnClick = () => {
     openDrawer(DRAWERS.BRANDING_TEMPLATES, { resource: 'CreditNote' });
-  }
+  };
 
-  const {
-    openBulkDeleteDialog,
-    isValidatingBulkDeleteCreditNotes,
-  } = useBulkDeleteCreditNotesDialog();
+  const { openBulkDeleteDialog, isValidatingBulkDeleteCreditNotes } =
+    useBulkDeleteCreditNotesDialog();
 
   // Show bulk delete button when rows are selected.
   if (!isEmpty(creditNotesSelectedRows)) {
@@ -222,7 +220,7 @@ function CreditNotesActionsBar({
   );
 }
 
-export default compose(
+export const CreditNotesActionsBar = compose(
   withCreditNotesActions,
   withSettingsActions,
   withCreditNotes(({ creditNoteTableState, creditNotesSelectedRows }) => ({
@@ -234,4 +232,4 @@ export default compose(
   })),
   withDialogActions,
   withDrawerActions,
-)(CreditNotesActionsBar);
+)(CreditNotesActionsBarInner);

@@ -10,7 +10,7 @@ import {
   TableSkeletonHeader,
 } from '@/components';
 
-import BillsEmptyStatus from './BillsEmptyStatus';
+import { BillsEmptyStatus } from './BillsEmptyStatus';
 
 import { withBills } from './withBills';
 import { withBillsActions } from './withBillsActions';
@@ -127,7 +127,7 @@ function BillsDataTable({
     <DashboardContentTable>
       <DataTable
         columns={columns}
-        data={bills}
+        data={bills ?? []}
         loading={isBillsLoading}
         headerLoading={isBillsLoading}
         progressBarLoading={isBillsFetching}
@@ -137,8 +137,8 @@ function BillsDataTable({
         noInitialFetch={true}
         sticky={true}
         pagination={true}
-        initialPageSize={billsTableState.pageSize}
-        pagesCount={pagination.pagesCount}
+        initialPageSize={billsTableState?.pageSize ?? 10}
+        rowsCount={pagination?.total ?? 0}
         TableLoadingRenderer={TableSkeletonRows}
         TableHeaderSkeletonRenderer={TableSkeletonHeader}
         ContextMenu={ActionsMenu}
@@ -161,7 +161,7 @@ function BillsDataTable({
   );
 }
 
-export default compose(
+export const BillsTable = compose(
   withBills(({ billsTableState }) => ({ billsTableState })),
   withBillsActions,
   withAlertActions,

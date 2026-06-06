@@ -14,7 +14,7 @@ import { ContactsOptions } from '@/constants/contactsOptions';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
 import { compose } from '@/utils';
 
-function ContactDuplicateForm({
+function ContactDuplicateFormInner({
   // #withDialogActions
   closeDialog,
 }) {
@@ -23,9 +23,7 @@ function ContactDuplicateForm({
   const { dialogName, contactId } = useContactDuplicateFromContext();
 
   const validationSchema = Yup.object().shape({
-    contact_type: Yup.string()
-      .required()
-      .label(intl.get('contact_type_')),
+    contact_type: Yup.string().required().label(intl.get('contact_type_')),
   });
 
   const initialValues = {
@@ -61,7 +59,7 @@ function ContactDuplicateForm({
             {/*------------ Contact Type -----------*/}
             <FFormGroup
               name={'contact_type'}
-              label={<T id={'contact_type'} />}
+              label={intl.get('contact_type')}
               labelInfo={<FieldRequiredHint />}
             >
               <FSelect
@@ -97,4 +95,6 @@ function ContactDuplicateForm({
   );
 }
 
-export default compose(withDialogActions)(ContactDuplicateForm);
+export const ContactDuplicateForm = compose(withDialogActions)(
+  ContactDuplicateFormInner,
+);

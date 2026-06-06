@@ -1,10 +1,24 @@
-// @ts-nocheck
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { compose } from '@/utils';
-import { withAuthentication } from '@/containers/Authentication/withAuthentication';
-import { withOrganization } from '@/containers/Organization/withOrganization';
+import {
+  withAuthentication,
+  WithAuthenticationProps,
+} from '@/containers/Authentication/withAuthentication';
+import {
+  withOrganization,
+  WithOrganizationProps,
+} from '@/containers/Organization/withOrganization';
+
+interface EnsureOrganizationIsNotReadyProps
+  extends Pick<WithAuthenticationProps, 'currentOrganizationId'>,
+    Pick<
+      WithOrganizationProps,
+      'isOrganizationReady' | 'isOrganizationSetupCompleted'
+    > {
+  children: React.ReactNode;
+}
 
 /**
  * Ensures organization is not ready.
@@ -14,25 +28,26 @@ function EnsureOrganizationIsNotReady({
 
   // #withOrganization
   isOrganizationReady,
-  isOrganizationSetupCompleted
-}) {
-  return (isOrganizationReady && !isOrganizationSetupCompleted) ? (
+  isOrganizationSetupCompleted,
+}: EnsureOrganizationIsNotReadyProps) {
+  return isOrganizationReady && !isOrganizationSetupCompleted ? (
     <Redirect to={{ pathname: '/' }} />
-  ) : children;
+  ) : (
+    children
+  );
 }
 
 export default compose(
   withAuthentication(({ currentOrganizationId }) => ({
     currentOrganizationId,
   })),
-  connect((state, props) => ({
-    organizationId: props.currentOrganizationId,
-  })),
-  withOrganization(({
+  connect<unknown, unknown, { currentOrganizationId: string | null }>(
+    (_state, props) => ({
+      organizationId: props.currentOrganizationId,
+    }),
+  ),
+  withOrganization(({ isOrganizationReady, isOrganizationSetupCompleted }) => ({
     isOrganizationReady,
-    isOrganizationSetupCompleted
-  }) => ({
-    isOrganizationReady,
-    isOrganizationSetupCompleted
+    isOrganizationSetupCompleted,
   })),
 )(EnsureOrganizationIsNotReady);

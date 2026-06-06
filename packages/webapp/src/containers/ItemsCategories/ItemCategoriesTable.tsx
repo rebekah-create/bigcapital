@@ -46,7 +46,7 @@ function ItemsCategoryTable({
     <DataTable
       noInitialFetch={true}
       columns={columns}
-      data={itemsCategories}
+      data={itemsCategories || []}
       loading={isCategoriesLoading}
       headerLoading={isCategoriesLoading}
       progressBarLoading={isCategoriesFetching}
@@ -65,4 +65,7 @@ function ItemsCategoryTable({
   );
 }
 
-export default compose(withDialogActions, withAlertActions)(ItemsCategoryTable);
+export const ItemCategoriesTable = compose(
+  withDialogActions,
+  withAlertActions,
+)(ItemsCategoryTable);

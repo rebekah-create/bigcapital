@@ -81,4 +81,6 @@ function AccountTransactionsSwitcher() {
   }
 }
 
-export default R.compose(withBankingActions)(AllTransactionsUncategorizedRoot);
+export const AllTransactionsUncategorized = R.compose(withBankingActions)(
+  AllTransactionsUncategorizedRoot,
+);

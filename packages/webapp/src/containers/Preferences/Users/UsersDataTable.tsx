@@ -15,7 +15,7 @@ import { Intent } from '@blueprintjs/core';
 /**
  * Users datatable.
  */
-function UsersDataTable({
+function UsersDataTableInner({
   // #withDialogActions
   openDialog,
 
@@ -86,7 +86,7 @@ function UsersDataTable({
   return (
     <DataTable
       columns={columns}
-      data={users}
+      data={users ?? []}
       loading={isUsersLoading}
       headerLoading={isUsersLoading}
       progressBarLoading={isUsersFetching}
@@ -104,4 +104,7 @@ function UsersDataTable({
   );
 }
 
-export default compose(withDialogActions, withAlertActions)(UsersDataTable);
+export const UsersDataTable = compose(
+  withDialogActions,
+  withAlertActions,
+)(UsersDataTableInner);

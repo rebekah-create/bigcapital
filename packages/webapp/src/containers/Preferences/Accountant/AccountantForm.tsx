@@ -5,7 +5,6 @@ import { Form, useFormikContext } from 'formik';
 import styled from 'styled-components';
 import { FormGroup, Radio, Button, Intent } from '@blueprintjs/core';
 import { useHistory } from 'react-router-dom';
-
 import {
   FormattedMessage as T,
   AccountsSelect,
@@ -21,7 +20,7 @@ import { useAccountantFormContext } from './AccountantFormProvider';
 /**
  * Accountant form.
  */
-export default function AccountantForm() {
+export function AccountantForm() {
   const history = useHistory();
   const { accounts } = useAccountantFormContext();
   const { isSubmitting } = useFormikContext();

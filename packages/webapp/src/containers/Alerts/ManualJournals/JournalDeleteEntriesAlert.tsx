@@ -11,14 +11,14 @@ import { compose, saveInvoke } from '@/utils';
 /**
  * Make journal delete entries alert.
  */
-function JournalDeleteEntriesAlert({
+function JournalDeleteEntriesAlertInner({
   // #ownProps
   name,
   onConfirm,
 
   // #withAlertStoreConnect
   isOpen,
-  payload: {  },
+  payload: {},
 
   // #withAlertActions
   closeAlert,
@@ -45,13 +45,14 @@ function JournalDeleteEntriesAlert({
       loading={false}
     >
       <p>
-        Clearing the table lines will delete all credits and debits were applied, Is this okay?
+        Clearing the table lines will delete all credits and debits were
+        applied, Is this okay?
       </p>
     </Alert>
   );
 }
 
-export default compose(
+export const JournalDeleteEntriesAlert = compose(
   withAlertStoreConnect(),
   withAlertActions,
-)(JournalDeleteEntriesAlert);
+)(JournalDeleteEntriesAlertInner);

@@ -10,7 +10,7 @@ import {
   TableSkeletonHeader,
 } from '@/components';
 
-import ItemsEmptyStatus from './ItemsEmptyStatus';
+import { ItemsEmptyStatus } from './ItemsEmptyStatus';
 
 import { withItemsActions } from './withItemsActions';
 import { withAlertActions } from '@/containers/Alert/withAlertActions';
@@ -28,7 +28,7 @@ import { DRAWERS } from '@/constants/drawers';
 /**
  * Items datatable.
  */
-function ItemsDataTable({
+function ItemsDataTableInner({
   // #withItemsActions
   setItemsTableState,
   setItemsSelectedRows,
@@ -140,7 +140,7 @@ function ItemsDataTable({
     <DashboardContentTable>
       <DataTable
         columns={columns}
-        data={items}
+        data={items || []}
         loading={isItemsLoading}
         headerLoading={isItemsLoading}
         progressBarLoading={isItemsFetching}
@@ -153,10 +153,10 @@ function ItemsDataTable({
         sticky={true}
         rowClassNames={rowClassNames}
         pagination={true}
-        initialPageSize={itemsTableState.pageSize}
+        initialPageSize={itemsTableState?.pageSize || 10}
         manualSortBy={true}
         manualPagination={true}
-        pagesCount={pagination.pagesCount}
+        rowsCount={pagination?.total || 0}
         autoResetSortBy={false}
         autoResetPage={true}
         TableLoadingRenderer={TableSkeletonRows}
@@ -183,7 +183,7 @@ function ItemsDataTable({
   );
 }
 
-export default compose(
+export const ItemsDataTable = compose(
   withItemsActions,
   withAlertActions,
   withDrawerActions,
@@ -191,5 +191,5 @@ export default compose(
   withSettings(({ itemsSettings }) => ({
     itemsTableSize: itemsSettings.tableSize,
   })),
-  withItems(({ itemsTableState }) => ({ itemsTableState }))
-)(ItemsDataTable);
+  withItems(({ itemsTableState }) => ({ itemsTableState })),
+)(ItemsDataTableInner);

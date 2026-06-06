@@ -2,7 +2,6 @@
 import React, { useMemo } from 'react';
 import classNames from 'classnames';
 import {
-  FormattedMessage as T,
   FAccountsSuggestField,
   FieldRequiredHint,
   Col,
@@ -13,11 +12,12 @@ import {
 import { getAddMoneyOutOptions } from '@/constants/cashflowOptions';
 import { useMoneyOutDialogContext } from './MoneyOutDialogProvider';
 import { CLASSES } from '@/constants/classes';
+import intl from 'react-intl-universal';
 
 /**
  * Transaction type fields.
  */
-function TransactionTypeFields() {
+export function TransactionTypeFields() {
   // Money in dialog context.
   const { cashflowAccounts } = useMoneyOutDialogContext();
 
@@ -36,7 +36,7 @@ function TransactionTypeFields() {
         <Col xs={5}>
           <FFormGroup
             name={'transaction_type'}
-            label={<T id={'transaction_type'} />}
+            label={intl.get('transaction_type')}
             labelInfo={<FieldRequiredHint />}
           >
             <FSelect
@@ -53,7 +53,7 @@ function TransactionTypeFields() {
           {/*------------ Current account -----------*/}
           <FFormGroup
             name={'cashflow_account_id'}
-            label={<T id={'cash_flow_transaction.label_current_account'} />}
+            label={intl.get('cash_flow_transaction.label_current_account')}
             labelInfo={<FieldRequiredHint />}
             fill
           >
@@ -70,5 +70,3 @@ function TransactionTypeFields() {
     </div>
   );
 }
-
-export default TransactionTypeFields;

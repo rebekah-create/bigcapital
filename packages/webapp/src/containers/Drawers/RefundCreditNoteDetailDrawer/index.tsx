@@ -7,7 +7,9 @@ import { withDrawers } from '@/containers/Drawer/withDrawers';
 import { compose } from '@/utils';
 
 const RefundCreditNoteDrawerContent = React.lazy(() =>
-  import('./RefundCreditNoteDrawerContent'),
+  import('./RefundCreditNoteDrawerContent').then((m) => ({
+    default: m.RefundCreditNoteDrawerContent,
+  })),
 );
 
 /**
@@ -35,4 +37,4 @@ function RefundCreditNoteDetailDrawer({
     </Drawer>
   );
 }
-export default compose(withDrawers())(RefundCreditNoteDetailDrawer);
+export const index = compose(withDrawers())(RefundCreditNoteDetailDrawer);

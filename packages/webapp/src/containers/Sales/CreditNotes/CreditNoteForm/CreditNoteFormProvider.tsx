@@ -44,16 +44,12 @@ function CreditNoteFormProvider({ creditNoteId, ...props }) {
   const isBranchFeatureCan = featureCan(Features.Branches);
 
   // Handle fetch customers data table or list
-  const {
-    data: { customers },
-    isLoading: isCustomersLoading,
-  } = useCustomers({ page_size: 10000 });
+  const { data: customersData, isLoading: isCustomersLoading } = useCustomers({
+    page_size: 10000,
+  });
 
   // Handle fetching the items table based on the given query.
-  const {
-    data: { items },
-    isLoading: isItemsLoading,
-  } = useItems({
+  const { data: itemsData, isLoading: isItemsLoading } = useItems({
     page_size: 10000,
   });
 
@@ -122,8 +118,8 @@ function CreditNoteFormProvider({ creditNoteId, ...props }) {
 
   // Provider payload.
   const provider = {
-    items,
-    customers,
+    items: itemsData?.items,
+    customers: customersData?.customers,
     creditNote,
     branches,
     warehouses,

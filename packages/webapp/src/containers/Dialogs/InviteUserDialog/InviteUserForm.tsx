@@ -9,7 +9,7 @@ import { AppToaster } from '@/components';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
 
 import { InviteUserFormSchema } from './InviteUserDialog.schema';
-import InviteUserFormContent from './InviteUserFormContent';
+import { InviteUserFormContent } from './InviteUserFormContent';
 import { useInviteUserFormContext } from './InviteUserFormProvider';
 
 import { transformApiErrors } from './utils';
@@ -18,10 +18,10 @@ import { compose, objectKeysTransform } from '@/utils';
 
 const initialValues = {
   email: '',
-  role_id: ''
-}
+  role_id: '',
+};
 
-function InviteUserForm({
+function InviteUserFormInner({
   // #withDialogActions
   closeDialog,
 }) {
@@ -79,4 +79,4 @@ function InviteUserForm({
     </Formik>
   );
 }
-export default compose(withDialogActions)(InviteUserForm);
+export const InviteUserForm = compose(withDialogActions)(InviteUserFormInner);

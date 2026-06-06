@@ -8,7 +8,7 @@ import { withAlertStoreConnect } from '@/containers/Alert/withAlertStoreConnect'
 import { withAlertActions } from '@/containers/Alert/withAlertActions';
 import { withDrawerActions } from '@/containers/Drawer/withDrawerActions';
 
-import { useDeleteBankRule } from '@/hooks/query/bank-rules';
+import { useDeleteBankRule } from '@/hooks/query/banking';
 import { compose } from '@/utils';
 
 /**
@@ -73,7 +73,7 @@ function BankRuleDeleteAlert({
   );
 }
 
-export default compose(
+export const DeleteBankRuleAlert = compose(
   withAlertStoreConnect(),
   withAlertActions,
   withDrawerActions,
