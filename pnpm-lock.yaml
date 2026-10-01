@@ -227,10 +227,10 @@ importers:
         version: 2.1.35
       moment:
         specifier: ^2.30.1
-        version: 2.30.1
+        version: 2.31.0
       moment-range:
         specifier: ^4.0.2
-        version: 4.0.2(moment@2.30.1)
+        version: 4.0.2(moment@2.31.0)
       moment-timezone:
         specifier: ^0.5.43
         version: 0.5.45
@@ -633,7 +633,7 @@ importers:
         version: 4.17.21
       moment:
         specifier: ^2.24.0
-        version: 2.30.1
+        version: 2.31.0
       moment-timezone:
         specifier: ^0.5.33
         version: 0.5.45
@@ -10120,8 +10120,8 @@ packages:
   moment-timezone@0.5.45:
     resolution: {integrity: sha512-HIWmqA86KcmCAhnMAN0wuDOARV/525R2+lOLotuGFzn4HO+FH+/645z2wx0Dt3iDv6/p61SIvKnDstISainhLQ==}
 
-  moment@2.30.1:
-    resolution: {integrity: sha512-uEmtNhbDOrWPFS+hdjFCBfy9f2YoyzRpwcl+DqpC6taX21FzsTLQVbMV/W7PzNSX6x/bhC1zA3c2UQ5NzH6how==}
+  moment@2.31.0:
+    resolution: {integrity: sha512-0acOTfMiWOheYS4eoWb80yYMb/JLvVv9SHbs2PehaDzfUG0Bw855SKyk0IKTnPGa5+U2bmi3W68l1+sGLX/pvw==}
 
   ms@2.0.0:
     resolution: {integrity: sha512-Tpp60P6IUJDTuOq/5Z8cdskzJujfwqfOTkrwIwj7IRISpnkJnT6SyJ4PCPnGMoFjC9ddhal5KVIYtAt97ix05A==}
@@ -16106,7 +16106,7 @@ snapshots:
       '@blueprintjs/core': 4.20.2(@types/react@18.3.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@blueprintjs/select': 4.9.24(@types/react@18.3.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       classnames: 2.5.1
-      moment: 2.30.1
+      moment: 2.31.0
       moment-timezone: 0.5.45
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
@@ -26663,16 +26663,16 @@ snapshots:
 
   modify-values@1.0.1: {}
 
-  moment-range@4.0.2(moment@2.30.1):
+  moment-range@4.0.2(moment@2.31.0):
     dependencies:
       es6-symbol: 3.1.4
-      moment: 2.30.1
+      moment: 2.31.0
 
   moment-timezone@0.5.45:
     dependencies:
-      moment: 2.30.1
+      moment: 2.31.0
 
-  moment@2.30.1: {}
+  moment@2.31.0: {}
 
   ms@2.0.0: {}
 
@@ -28054,7 +28054,7 @@ snapshots:
     dependencies:
       babel-runtime: 6.26.0
       classnames: 2.5.1
-      moment: 2.30.1
+      moment: 2.31.0
       prop-types: 15.8.1
       rc-trigger: 2.6.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       rc-util: 4.21.1
