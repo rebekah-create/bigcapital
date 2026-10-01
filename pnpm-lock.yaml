@@ -20,7 +20,7 @@ importers:
         version: 17.8.1
       '@commitlint/config-lerna-scopes':
         specifier: ^17.4.2
-        version: 17.8.1(lerna@8.1.3(bluebird@3.7.2)(debug@4.4.3(supports-color@10.2.2))(encoding@0.1.13)(supports-color@10.2.2))
+        version: 17.8.1(lerna@8.1.3(bluebird@3.7.2)(encoding@0.1.13)(supports-color@10.2.2))
       '@faker-js/faker':
         specifier: ^8.0.2
         version: 8.4.1
@@ -32,7 +32,7 @@ importers:
         version: 8.0.3
       lerna:
         specifier: ^8.1.2
-        version: 8.1.3(bluebird@3.7.2)(debug@4.4.3(supports-color@10.2.2))(encoding@0.1.13)(supports-color@10.2.2)
+        version: 8.1.3(bluebird@3.7.2)(encoding@0.1.13)(supports-color@10.2.2)
       pnpm:
         specifier: ^9.0.5
         version: 9.1.2
@@ -155,7 +155,7 @@ importers:
         version: 0.5.0
       axios:
         specifier: ^1.6.0
-        version: 1.18.0(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2)
+        version: 1.20.0(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2)
       bcrypt:
         specifier: 5.1.1
         version: 5.1.1(encoding@0.1.13)(supports-color@10.2.2)
@@ -579,7 +579,7 @@ importers:
         version: 0.4.1
       axios:
         specifier: ^1.6.0
-        version: 1.18.0(debug@4.4.3(supports-color@5.5.0))(supports-color@5.5.0)
+        version: 1.20.0(debug@4.4.3(supports-color@5.5.0))(supports-color@5.5.0)
       basscss:
         specifier: ^8.0.2
         version: 8.1.0
@@ -6483,11 +6483,8 @@ packages:
   axios@0.27.2:
     resolution: {integrity: sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ==}
 
-  axios@1.18.0:
-    resolution: {integrity: sha512-E32NzpYKp++W7XRe52rHiXV2ehxmh3wbdgO7MHeFM+vqxLBYHzt0ElkiImtOBxtOmyp0yoC8C6uESVV84Y2/hw==}
-
-  axios@1.18.1:
-    resolution: {integrity: sha512-3nTvFlvpn9Zu/RkHUqtc7/+al4UpRW5az71ap5zccp6e8RAYEzhMTecX8Dz1wWDYrPpUoB1HAQEGEAEvUr7S9g==}
+  axios@1.20.0:
+    resolution: {integrity: sha512-r8aOh8j9cGKpgQAqpzrUHnSIc6a59Y3Xf/cv8sy1DrHCkZHzQGEuoq1tARk6qSyDdtQGSDgpb9kFlruzPvrgwg==}
 
   axobject-query@3.2.1:
     resolution: {integrity: sha512-jsyHu61e6N4Vbz/v18DHwWYKK0bSWLqn47eeDSKPB7m8tqMHF9YJ+mhIk2lVteyZrY8tnSj/jHOv4YiTCuCJgg==}
@@ -16181,14 +16178,14 @@ snapshots:
     dependencies:
       conventional-changelog-conventionalcommits: 6.1.0
 
-  '@commitlint/config-lerna-scopes@17.8.1(lerna@8.1.3(bluebird@3.7.2)(debug@4.4.3(supports-color@10.2.2))(encoding@0.1.13)(supports-color@10.2.2))':
+  '@commitlint/config-lerna-scopes@17.8.1(lerna@8.1.3(bluebird@3.7.2)(encoding@0.1.13)(supports-color@10.2.2))':
     dependencies:
       '@lerna/project': 6.4.1
       glob: 8.1.0
       import-from: 4.0.0
       semver: 7.5.4
     optionalDependencies:
-      lerna: 8.1.3(bluebird@3.7.2)(debug@4.4.3(supports-color@10.2.2))(encoding@0.1.13)(supports-color@10.2.2)
+      lerna: 8.1.3(bluebird@3.7.2)(encoding@0.1.13)(supports-color@10.2.2)
 
   '@commitlint/config-validator@17.8.1':
     dependencies:
@@ -17268,10 +17265,10 @@ snapshots:
 
   '@lemonsqueezy/lemonsqueezy.js@2.2.0': {}
 
-  '@lerna/create@8.1.3(bluebird@3.7.2)(debug@4.4.3(supports-color@10.2.2))(encoding@0.1.13)(supports-color@10.2.2)(typescript@5.6.3)':
+  '@lerna/create@8.1.3(bluebird@3.7.2)(encoding@0.1.13)(supports-color@10.2.2)(typescript@5.6.3)':
     dependencies:
       '@npmcli/run-script': 7.0.2(supports-color@10.2.2)
-      '@nx/devkit': 19.0.7(nx@19.0.7(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2))
+      '@nx/devkit': 19.0.7(nx@19.0.7(supports-color@10.2.2))
       '@octokit/plugin-enterprise-rest': 6.0.1
       '@octokit/rest': 19.0.11(encoding@0.1.13)
       byte-size: 8.1.1
@@ -17308,7 +17305,7 @@ snapshots:
       npm-packlist: 5.1.1
       npm-registry-fetch: 14.0.5(supports-color@10.2.2)
       npmlog: 6.0.2
-      nx: 19.0.7(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2)
+      nx: 19.0.7(supports-color@10.2.2)
       p-map: 4.0.0
       p-map-series: 2.1.0
       p-queue: 6.6.2
@@ -17818,15 +17815,15 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@nrwl/devkit@19.0.7(nx@19.0.7(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2))':
+  '@nrwl/devkit@19.0.7(nx@19.0.7(supports-color@10.2.2))':
     dependencies:
-      '@nx/devkit': 19.0.7(nx@19.0.7(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2))
+      '@nx/devkit': 19.0.7(nx@19.0.7(supports-color@10.2.2))
     transitivePeerDependencies:
       - nx
 
-  '@nrwl/tao@19.0.7(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2)':
+  '@nrwl/tao@19.0.7(supports-color@10.2.2)':
     dependencies:
-      nx: 19.0.7(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2)
+      nx: 19.0.7(supports-color@10.2.2)
       tslib: 2.8.1
     transitivePeerDependencies:
       - '@swc-node/register'
@@ -17842,14 +17839,14 @@ snapshots:
     transitivePeerDependencies:
       - encoding
 
-  '@nx/devkit@19.0.7(nx@19.0.7(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2))':
+  '@nx/devkit@19.0.7(nx@19.0.7(supports-color@10.2.2))':
     dependencies:
-      '@nrwl/devkit': 19.0.7(nx@19.0.7(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2))
+      '@nrwl/devkit': 19.0.7(nx@19.0.7(supports-color@10.2.2))
       ejs: 3.1.10
       enquirer: 2.3.6
       ignore: 5.3.1
       minimatch: 9.0.3
-      nx: 19.0.7(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2)
+      nx: 19.0.7(supports-color@10.2.2)
       semver: 7.6.3
       tmp: 0.2.3
       tslib: 2.8.1
@@ -21823,7 +21820,7 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  axios@1.18.0(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2):
+  axios@1.20.0(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2):
     dependencies:
       follow-redirects: 1.16.0(debug@4.4.3(supports-color@10.2.2))
       form-data: 4.0.6
@@ -21833,7 +21830,7 @@ snapshots:
       - debug
       - supports-color
 
-  axios@1.18.0(debug@4.4.3(supports-color@5.5.0))(supports-color@5.5.0):
+  axios@1.20.0(debug@4.4.3(supports-color@5.5.0))(supports-color@5.5.0):
     dependencies:
       follow-redirects: 1.16.0(debug@4.4.3(supports-color@5.5.0))
       form-data: 4.0.6
@@ -21843,9 +21840,9 @@ snapshots:
       - debug
       - supports-color
 
-  axios@1.18.1(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2):
+  axios@1.20.0(supports-color@10.2.2):
     dependencies:
-      follow-redirects: 1.16.0(debug@4.4.3(supports-color@10.2.2))
+      follow-redirects: 1.16.0(debug@4.4.3(supports-color@5.5.0))
       form-data: 4.0.6
       https-proxy-agent: 5.0.1(supports-color@10.2.2)
       proxy-from-env: 2.1.0
@@ -26091,11 +26088,11 @@ snapshots:
 
   leac@0.6.0: {}
 
-  lerna@8.1.3(bluebird@3.7.2)(debug@4.4.3(supports-color@10.2.2))(encoding@0.1.13)(supports-color@10.2.2):
+  lerna@8.1.3(bluebird@3.7.2)(encoding@0.1.13)(supports-color@10.2.2):
     dependencies:
-      '@lerna/create': 8.1.3(bluebird@3.7.2)(debug@4.4.3(supports-color@10.2.2))(encoding@0.1.13)(supports-color@10.2.2)(typescript@5.6.3)
+      '@lerna/create': 8.1.3(bluebird@3.7.2)(encoding@0.1.13)(supports-color@10.2.2)(typescript@5.6.3)
       '@npmcli/run-script': 7.0.2(supports-color@10.2.2)
-      '@nx/devkit': 19.0.7(nx@19.0.7(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2))
+      '@nx/devkit': 19.0.7(nx@19.0.7(supports-color@10.2.2))
       '@octokit/plugin-enterprise-rest': 6.0.1
       '@octokit/rest': 19.0.11(encoding@0.1.13)
       byte-size: 8.1.1
@@ -26138,7 +26135,7 @@ snapshots:
       npm-packlist: 5.1.1
       npm-registry-fetch: 14.0.5(supports-color@10.2.2)
       npmlog: 6.0.2
-      nx: 19.0.7(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2)
+      nx: 19.0.7(supports-color@10.2.2)
       p-map: 4.0.0
       p-map-series: 2.1.0
       p-pipe: 3.1.0
@@ -27063,12 +27060,12 @@ snapshots:
       gauge: 4.0.4
       set-blocking: 2.0.0
 
-  nx@19.0.7(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2):
+  nx@19.0.7(supports-color@10.2.2):
     dependencies:
-      '@nrwl/tao': 19.0.7(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2)
+      '@nrwl/tao': 19.0.7(supports-color@10.2.2)
       '@yarnpkg/lockfile': 1.1.0
       '@yarnpkg/parsers': 3.0.0-rc.46
-      axios: 1.18.1(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2)
+      axios: 1.20.0(supports-color@10.2.2)
       chalk: 4.1.2
       cli-cursor: 3.1.0
       cli-spinners: 2.6.1
@@ -27680,7 +27677,7 @@ snapshots:
 
   posthog-node@4.3.2(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2):
     dependencies:
-      axios: 1.18.0(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2)
+      axios: 1.20.0(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2)
       rusha: 0.8.14
     transitivePeerDependencies:
       - debug
