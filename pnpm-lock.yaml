@@ -8674,8 +8674,8 @@ packages:
     resolution: {integrity: sha512-4haO1M4mLO91PW57BMsDFf75UmwoRX0GkdD+Faw+Lr+r/OZrOCS0pIBwOL1xCKQqnQzbNFGgK2V2CpBUPeFNTw==}
     hasBin: true
 
-  handlebars@4.7.8:
-    resolution: {integrity: sha512-vafaFqs8MZkRrSX7sFVUdo3ap/eNiLnb4IakshzvP56X5Nr1iGKAIqdX6tMlm6HcNRIkr6AxO5jFEoJzzpT8aQ==}
+  handlebars@4.7.10:
+    resolution: {integrity: sha512-P5VJMVM7qgBn6vjXMw8WG9uVI+ncf2pi72j4de4yz5ZULLj2RGqLYaKOYGsgyrViQ0tePOVlN1tDCCXXtFqXKg==}
     engines: {node: '>=0.4.7'}
     hasBin: true
 
@@ -19625,7 +19625,7 @@ snapshots:
       find-up: 5.0.0
       fs-extra: 11.2.0
       glob: 10.4.2
-      handlebars: 4.7.8
+      handlebars: 4.7.10
       lazy-universal-dotenv: 4.0.0
       node-fetch: 2.6.7(encoding@0.1.13)
       picomatch: 2.3.1
@@ -19654,7 +19654,7 @@ snapshots:
       find-up: 5.0.0
       fs-extra: 11.2.0
       glob: 10.4.2
-      handlebars: 4.7.8
+      handlebars: 4.7.10
       lazy-universal-dotenv: 4.0.0
       node-fetch: 2.6.7(encoding@0.1.13)
       picomatch: 2.3.1
@@ -19683,7 +19683,7 @@ snapshots:
       find-up: 5.0.0
       fs-extra: 11.2.0
       glob: 10.4.2
-      handlebars: 4.7.8
+      handlebars: 4.7.10
       lazy-universal-dotenv: 4.0.0
       node-fetch: 2.6.7(encoding@0.1.13)
       picomatch: 2.3.1
@@ -22737,7 +22737,7 @@ snapshots:
     dependencies:
       conventional-commits-filter: 3.0.0
       dateformat: 3.0.3
-      handlebars: 4.7.8
+      handlebars: 4.7.10
       json-stringify-safe: 5.0.1
       meow: 8.1.2
       semver: 7.6.3
@@ -24644,7 +24644,7 @@ snapshots:
       pumpify: 1.5.1
       through2: 2.0.5
 
-  handlebars@4.7.8:
+  handlebars@4.7.10:
     dependencies:
       minimist: 1.2.8
       neo-async: 2.6.2
